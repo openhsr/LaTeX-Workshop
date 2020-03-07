@@ -1,4 +1,9 @@
-\documentclass[xetex,mathserif]{beamer}
+\documentclass[xetex,serif, onlymath]{beamer}
+
+\usepackage[T1]{fontenc}
+\usepackage[usefilenames,% Important for XeLaTeX
+  DefaultFeatures={Ligatures=Common}]{plex-otf} %
+\renewcommand*\familydefault{\sfdefault} %% Only if the base font of the document is to be sans serif
 
 \usetheme{hsr}
 
@@ -23,9 +28,10 @@
 \maketitle
 \end{frame}
 
-\begin{frame}{Goal: You will learn to typeset something like this}
+\begin{frame}{Goal: Learn to typeset something like this}
 	\begin{center}
-		\includegraphics[width=\linewidth]{figs/gauss-flux}
+		\vspace{1cm}
+		\includegraphics[width=.8\linewidth]{figs/gauss-flux}
 	\end{center}
 \end{frame}
 
