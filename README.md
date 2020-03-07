@@ -11,9 +11,8 @@ Figure: Screenshot of TeXWorks under Linux with the sample document `samples/gau
   - [ ] Learn the basics of LaTeX to produce
    - Text documents
    - Mathematics
-   - Reports
-   - Plots
-   - Figures with Tikz
+   - Plots with pgfplots and
+   - Diagrams and figures with Tikz
   - [ ] Understand compiler errors
   - [ ] Bibliography management
   - [ ] Integration with version control / Write collaboratively
@@ -29,6 +28,7 @@ You *may* also install a minimal version, but beware that you may be missing som
 *Note for Linux users:* You should install texlive through your package manager.
 If you are using a Debian / Ubuntu derivate the `texlive` package should install most of what you need.
 
+*Note for Windows users:* The default MikTeX installation only contains the minimal number of packages. MikTeX then offers a package management system to automatically downlad the missing packages as needed, but that means that your first document will take forever to compile. Be patient.
 
 | Distrubition | OS      | Homepage                              |
 |--------------|---------|---------------------------------------|
