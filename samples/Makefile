@@ -1,5 +1,5 @@
-INPUT   := $(wildcard *.tex)
-OUTPUT  := $(patsubst %.tex,%.pdf,$(INPUT))
+INPUTS  := gauss-flux.tex packages.tex
+OUTPUTS := $(patsubst %.tex,%.pdf,$(INPUTS))
 
 AUXDIR  := build
 SUBDIRS := fig
@@ -10,9 +10,13 @@ TEXOPTS := --output-directory=$(AUXDIR) --8bit --interaction=nonstopmode
 SUBDIR_FILES := $(wildcard $(SUBDIRS)/*)
 AUX_SUBDIRS  := $(patsubst %,$(AUXDIR)/%,$(SUBDIRS))
 
-all: $(OUTPUT)
+.PHONY: all clean
+all: $(OUTPUTS)
 
-$(OUTPUT): $(INPUT) $(SUBDIR_FILES) $(AUXDIR) $(AUX_SUBDIRS)
+clean:
+	rm -rdv $(OUTPUTS) $(AUXDIR)
+
+$(OUTPUTS): %.pdf: %.tex $(SUBDIR_FILES) $(AUXDIR) $(AUX_SUBDIRS)
 	$(TEX) $(TEXOPTS) $< && cp $(AUXDIR)/$@ .
 
 $(AUX_SUBDIRS):
@@ -20,3 +24,4 @@ $(AUX_SUBDIRS):
 
 $(AUXDIR):
 	mkdir -p $(AUXDIR)
+ 

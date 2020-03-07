@@ -1,0 +1,197 @@
+\documentclass[a4paper]{article}
+
+% preamble
+
+%% packages
+\usepackage[english]{babel} % change language (dates, captions, ...)
+
+\usepackage{amsmath} % most mathematical symbols
+\usepackage{amssymb} % even more symbols (see refs/symbols.pdf)
+\usepackage{esint}   % contour integrals
+
+\usepackage[%
+    top = 3cm, bottom = 2.5cm, left = 3cm, right = 3cm,
+]{geometry} % change margins
+\usepackage{fancyhdr} % change headers
+
+%% clear header and footers
+\fancyhf{}
+\fancyhead[R]{\textsc{Quick reference}}
+\fancyhead[L]{\textsf{Open\textcolor{cyan!50!blue}{\textbf{\textbackslash{HSR}}}}}
+\fancyfoot[C]{\thepage}
+%% make line a bit thicker
+\renewcommand{\headrulewidth}{0.5pt}
+%% apply style
+\pagestyle{fancy}
+
+\usepackage[
+    colorlinks=true,
+    linkcolor=.,
+    citecolor=.,
+    urlcolor=blue
+]{hyperref} % highlight urls in blue
+
+\usepackage{xcolor}      % use colors
+\usepackage{float}       % exact placing of figures
+
+\usepackage{booktabs} % nicer looking table separators
+\usepackage{multirow} % cells that span multiple rows
+\usepackage{multicol} % split text into columns (like a newspaper)
+\usepackage{array}    % more powerful table configuration
+
+\usepackage{graphicx}    % include graphics
+\usepackage{tikz}        % draw graphics yourself
+\usepackage{tikz-timing} % draw timing diagrams 
+\usepackage{pgfplots}    % beautiful plots
+\pgfplotsset{compat=newest}
+
+\usepackage{framed}   % simple frame
+\usepackage{mdframed} % fancy frames
+
+%% a somewhat basic frame
+\mdfdefinestyle{mystyle}{%
+    linecolor=black,%
+    linewidth=1.5pt,%
+    frametitlerule=true,
+    frametitlebackgroundcolor=gray!20,
+    innertopmargin=\topskip,
+}
+
+\usepackage{listings} % show code
+
+%% create a lstlisting style
+\lstdefinestyle{latex}{
+    belowcaptionskip=\baselineskip,
+    breaklines=true,
+    frame=none,
+    inputencoding=utf8,
+    % margin
+    xleftmargin=\parindent,
+    % numbers
+    numbers=left,
+    numbersep=5pt,
+    numberstyle=\ttfamily\footnotesize\color{gray},
+    % background
+    backgroundcolor=\color{gray!10},
+    % default language:
+    language=[LaTeX]TeX,
+    showstringspaces=false,
+    % font
+    basicstyle=\ttfamily\small,
+    identifierstyle=\color{black},
+    keywordstyle=\color{green!40!black},
+    commentstyle=\color{gray},
+    stringstyle=\color{orange},
+}
+
+%% and set the chosen style
+\lstset{style=latex}
+
+
+
+%% metadata
+\title{A few packages to make your document look better}
+\author{Naoki Pross}
+\date{\today}
+
+
+% document starts here
+\begin{document}
+\maketitle
+
+\section{\texttt{babel}}
+\begin{lstlisting}
+\usepackage[english]{babel} % change language (dates, captions, ...)
+\end{lstlisting}
+
+
+\section{\texttt{amsmath}, \texttt{amssymb}, \texttt{esint}}
+These packages add more math symbols.
+\[
+    \oint_{\partial V} \mathbf{E}_0 \cdot \mathrm{d}\mathbf{S} 
+	= \int_V \nabla \cdot \mathbf{E}_0 \, \mathrm{d}V
+\]
+\begin{lstlisting}
+\oint_{\partial V} \mathbf{E}_0 \cdot \mathrm{d}\mathbf{S} 
+    = \int_V \nabla \cdot \mathbf{E}_0 \, \mathrm{d}V
+\end{lstlisting}
+
+
+\section{\texttt{geometry}, \texttt{fancyhdr}}
+You are looking at a document with the following settings:
+\begin{lstlisting}
+\usepackage[%
+    top = 3cm, bottom = 2.5cm, left = 3cm, right = 3cm,
+]{geometry} % change margins
+\end{lstlisting}
+
+\begin{lstlisting}
+\usepackage{fancyhdr} % change headers
+%% clear header and footers
+\fancyhf{}
+\fancyhead[R]{\textsc{Quick reference}}
+\fancyhead[L]{\textsf{Open\textcolor{cyan!50!blue}{\textbf{\textbackslash{HSR}}}}}
+\fancyfoot[C]{\thepage}
+%% make line a bit thicker
+\renewcommand{\headrulewidth}{0.5pt}
+%% apply style
+\pagestyle{fancy}
+\end{lstlisting}
+
+
+\section{\texttt{xcolor}}
+You can now use \textcolor{red}{colors}, and 
+\textcolor{red!40!blue}{combination of colors}!
+
+\begin{lstlisting}
+You can now use \textcolor{red}{colors}, and 
+\textcolor{red!40!blue}{combination of colors}!
+\end{lstlisting}
+
+
+\section{\texttt{float}, \texttt{booktabs}, \texttt{multirow}, \texttt{multicol}, \texttt{array}}
+% float allows for exact placement with `H', works with figures too
+\begin{table}[H]
+    \centering{}
+    \caption{A sane looking table}
+    % array allows to use >{} and <{} to add a command 
+    % before and after the start of a cell
+    \begin{tabular}{>{\bfseries}r l l >{\(}l<{\)}}
+        % beautiful separators with booktabs
+        \toprule
+        % multicolumn (and multirow) allows to do what is says, 
+        % `c' stands for "center", can also be `r' or `l'
+        Bold & \multicolumn{2}{c}{Multiple columns}   & \gamma\\
+        \midrule
+           A & Hello      & World                     & \psi \\
+           B & Welcome to & \LaTeX                    & \varphi \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\begin{lstlisting}
+% float allows for exact placement with `H', works with figures too
+\begin{table}[H]
+    \centering{}
+    \caption{A sane looking table}
+    % array allows to use >{} and <{} to add a command 
+    % before and after the start of a cell
+    \begin{tabular}{>{\bfseries}r l l >{\(}l<{\)}}
+        % beautiful separators with booktabs
+        \toprule
+        % multicolumn (and multirow) allows to do what is says, 
+        % `c' stands for "center", can also be `r' or `l'
+        Bold & \multicolumn{2}{c}{Multiple columns}   & \gamma\\
+        \midrule
+           A & Hello      & World                     & \psi \\
+           B & Welcome to & \LaTeX                    & \varphi \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+\end{lstlisting}
+
+\section{\texttt{graphicx}}
+
+\section{\texttt{tikz}, \texttt{tikz-timing}, \texttt{pgfplots}}
+
+\end{document}
