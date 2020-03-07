@@ -3,7 +3,7 @@ This repository contains the documentation for the OpenHSR introductory LaTeX wo
 
 ## Goals
   - [ ] Install LaTeX on your machine (ideally in the PreLab, before the WS takes place)
-  - [ ] Understand what is TeX, LaTeX, XeLaTeX, etc.
+  - [ ] Understand what is TeX, LaTeX, XeLaTeX, CTAN, etc.
   - [ ] Learn the basics of LaTeX to produce
    - Text documents
    - Mathematics
@@ -16,4 +16,7 @@ This repository contains the documentation for the OpenHSR introductory LaTeX wo
     
 ## Pre-Lab
 ## Further readings
-## References
+- [Wikibooks LaTeX](https://en.wikibooks.org/wiki/LaTeX#Contents)
+- [Introduction to LaTeX](https://web.mit.edu/rsi/www/pdfs/new-latex.pdf)
+- [A not so short introduction to LaTeXe](references/lshort.pdf) ([online](https://tobi.oetiker.ch/lshort/lshort.pdf))
+- [LaTeXe for class and package writers](references/clsguide.pdf) ([online](https://www.latex-project.org/help/documentation/clsguide.pdf))
