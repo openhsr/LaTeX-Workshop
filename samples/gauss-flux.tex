@@ -2,6 +2,10 @@
 
 % preamble
 
+\usepackage{fontspec}
+\usepackage{polyglossia}
+\setdefaultlanguage{english}
+
 % colored text
 \usepackage{xcolor}
 
@@ -305,7 +309,10 @@ and
         \mathbf{E}_{B_R}
         \cdot \mathrm{d}\mathbf{S}
     + \oint\limits_{\partial B_R(\mathbf{r}_0)}
-        \mathbf{E}_C)
+        \mathbf{E}_C
+        \cdot \mathrm{d}\mathbf{S}
+    = \oint\limits_{\partial B_R(\mathbf{r}_0)}
+        \mathbf{E}_{B_R}
         \cdot \mathrm{d}\mathbf{S}
 \]
 
