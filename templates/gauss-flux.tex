@@ -1,0 +1,363 @@
+\documentclass[a4paper]{article}
+
+% preamble
+
+% colored text
+\usepackage{xcolor}
+
+% mathematical typesetting
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{esint}
+
+% compact lists
+\usepackage{enumitem}
+
+% header and footer
+\usepackage{fancyhdr}
+
+%% apply style
+\pagestyle{fancy}
+
+%% clear header and footers
+\fancyhf{}
+\fancyhead[R]{\textsc{Gauss's flux theorem}}
+\fancyhead[L]{\textsf{Open\textcolor{cyan!50!blue}{\textbf{\textbackslash{HSR}}}}}
+\fancyfoot[C]{\thepage}
+
+\renewcommand{\headrulewidth}{0.5pt}
+
+
+% pretty frames
+\usepackage{mdframed}
+
+% configuration for mdframed
+\mdfdefinestyle{mystyle}{%
+    linecolor=black,%
+    linewidth=1.5pt,%
+    frametitlerule=true,
+    frametitlebackgroundcolor=gray!20,
+    innertopmargin=\topskip,
+}
+
+% add a bit of space between paragraphs
+\setlength{\parskip}{1ex plus 0.5ex minus 0.2ex}
+
+
+% metadata
+\title{Gauss's flux theorem}
+\author{Naoki Pross}
+\date{\today}
+
+% document
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This is Wikipedia's article on Gauss's law \cite{wiki} of electric fields, typeset in \LaTeX{} as an example to show how document may be structured. This document was made for the \textsf{Open\textcolor{cyan!50!blue}{\textbackslash{\textbf{HSR}}}} \LaTeX{} workshop.
+\end{abstract}
+\tableofcontents
+\newpage
+
+\section{Introduction}
+In physics, Gauss's law, also known as Gauss's flux theorem, is a law relating the distribution of electric charge to the resulting electric field. The surface under consideration may be a closed one enclosing a volume such as a spherical surface.
+
+The law was first formulated by Joseph-Louis Lagrange in 1773, followed by Carl Friedrich Gauss in 1813, both in the context of the attraction of ellipsoids. It is one of Maxwell's four equations, which form the basis of classical electrodynamics.\footnote{The other three of Maxwell's equations are: Gauss's law for magnetism, Faraday's law of induction, and Ampère's law with Maxwell's correction} Gauss's law can be used to derive Coulomb's law, and vice versa. 
+
+\section{Qualitative description}
+In words, Gauss's law states that
+
+\begin{quote}
+The net electric flux through any hypothetical closed surface is equal to \(\frac{1}{\varepsilon_0}\) times the net electric charge within that closed surface.
+\end{quote}
+
+Gauss's law has a close mathematical similarity with a number of laws in other areas of physics, such as Gauss's law for magnetism and Gauss's law for gravity. In fact, any inverse-square law can be formulated in a way similar to Gauss's law: for example, Gauss's law itself is essentially equivalent to the inverse-square Coulomb's law, and Gauss's law for gravity is essentially equivalent to the inverse-square Newton's law of gravity.
+
+The law can be expressed mathematically using vector calculus in integral form and differential form; both are equivalent since they are related by the divergence theorem, also called Gauss's theorem. Each of these forms in turn can also be expressed two ways: In terms of a relation between the electric field \(\mathbf{E}\) and the total electric charge, or in terms of the electric displacement field \(\mathbf{D}\) and the free electric charge.
+
+\section{Equation involving the \(\mathbf{E}\) field} \label{sec:eqEfield}
+Gauss's law can be stated using either the electric field \(\mathbf{E}\) or the electric displacement field \(\mathbf{D}\). This section shows some of the forms with \(\mathbf{E}\); the form with \(\mathbf{D}\) is below, as are other forms with \(\mathbf{E}\). 
+
+\subsection{Integral form}
+Gauss's law may be expressed as:
+\[
+    \Phi_E = \frac{Q}{\varepsilon_0}
+\]
+where \(\Phi_E\) is the electric flux through a closed surface \(S\) enclosing any volume \(V\), \(Q\) is the total charge enclosed within \(V\), and \(\varepsilon_0\) is the electric constant. The electric flux \(\Phi_E\) is defined as a surface integral of the electric field: 
+\[
+    \Phi_E = \oiint_S \mathbf{E} \cdot \mathrm{d} \mathbf{A}
+\]
+where \(\mathbf{E}\) is the electric field, \(\mathrm{d}\mathbf{A}\) is a vector representing an infinitesimal element of area of the surface,\footnote{More specifically, the infinitesimal area is thought of as planar and with area \(\mathrm{d}\mathbf{A}\). The vector \(\mathrm{d}\mathbf{A}\) is normal to this area element and has magnitude \(dA\)} and \(\cdot\) represents the dot product of two vectors.
+
+Since the flux is defined as an integral of the electric field, this expression of Gauss's law is called the integral form. 
+
+An important fact about this fundamental equation often doesn't find a mention in expositions that are not absolutely diligent. The above equation may fail to hold true in case the closed surface \(S\) contains a singularity of the electric field, which is physicists' term for a point in space where either a point charge exists and the field strength approaches infinity, or the field's magnitude or direction gets altered discontinuously due to the existence of a surface charge. In 2011, a modification of the above equation, called the Generalized Gauss's Theorem by its original creator, was published in the proceedings of the 2011 Annual Meeting of Electrostatics Society of America. The Generalized Gauss's Theorem allows the closed surface \(S\) to pass through singularities of the electric field. A corollary of the Generalized Gauss's Theorem, known as the simplest form of the Generalized Gauss's Theorem, holds true if the surface \(S\) is smooth. It states that 
+\[
+    \Phi_E = \frac{Q}{\varepsilon_0} + \frac{1}{2} \frac{Q'}{\varepsilon_0}
+\]
+where \(Q\) is the net charge enclosed within \(V\) and \(Q'\) is the net charge contained by the closed surface \(S\) itself. 
+
+If the electric field is known everywhere, Gauss's law makes it possible to find the distribution of electric charge: The charge in any given region can be deduced by integrating the electric field to find the flux.
+
+The reverse problem (when the electric charge distribution is known and the electric field must be computed) is much more difficult. The total flux through a given surface gives little information about the electric field, and can go in and out of the surface in arbitrarily complicated patterns.
+
+An exception is if there is some symmetry in the problem, which mandates that the electric field passes through the surface in a uniform way. Then, if the total flux is known, the field itself can be deduced at every point. Common examples of symmetries which lend themselves to Gauss's law include: cylindrical symmetry, planar symmetry, and spherical symmetry. See the article Gaussian surface for examples where these symmetries are exploited to compute electric fields. 
+
+\subsection{Differential form}
+By the divergence theorem, Gauss's law can alternatively be written in the differential form: 
+\[
+    \nabla \cdot \mathbf{E} = \frac{\rho}{\varepsilon_0}
+\]
+where \(\nabla \cdot \mathbf{E}\) is the divergence of the electric field, \(\varepsilon_0\) is the electric constant, and \(\rho\) is the total electric charge density (charge per unit volume).
+
+\subsection{Equivalence of integral and differential forms}
+The integral and differential forms are mathematically equivalent, by the divergence theorem. Here is the argument more specifically.
+
+\begin{mdframed}[%
+    style=mystyle,%
+    frametitle={Outline of proof}]
+
+The integral form of Gauss's law is:
+\[
+    \Phi_E = \oiint_S \mathbf{E} \cdot \mathrm{d} \mathbf{A}
+\]
+for any closed surface \(S\) containing charge \(Q\). By the divergence theorem, this equation is equivalent to: 
+\[
+    \iiint_V \nabla \cdot \mathbf{E} \, \mathrm{d}V  = \frac{Q}{\varepsilon_0}
+\]
+for any volume \(V\) containing charge \(Q\). By the relation between charge and charge density, this equation is equivalent to: 
+\[
+    \iiint_V \nabla \cdot \mathbf{E} \, \mathrm{d}V  = \iiint \frac{\rho}{\varepsilon_0} \, \mathrm{d}V
+\]
+for any volume \(V\). In order for this equation to be simultaneously true for every possible volume \(V\), it is necessary (and sufficient) for the integrands to be equal everywhere. Therefore, this equation is equivalent to: 
+\[
+    \nabla \cdot \mathbf{E} = \frac{\rho}{\varepsilon_0}
+\]
+\end{mdframed}
+
+\section{Equations involving the \(\mathbf{D}\) field}
+\subsection{Free, bound, and total charge}
+The electric charge that arises in the simplest textbook situations would be classified as ``free charge'' --- for example, the charge which is transferred in static electricity, or the charge on a capacitor plate. In contrast, ``bound charge'' arises only in the context of dielectric (polarizable) materials. (All materials are polarizable to some extent.) When such materials are placed in an external electric field, the electrons remain bound to their respective atoms, but shift a microscopic distance in response to the field, so that they're more on one side of the atom than the other. All these microscopic displacements add up to give a macroscopic net charge distribution, and this constitutes the ``bound charge''. 
+
+Although microscopically all charge is fundamentally the same, there are often practical reasons for wanting to treat bound charge differently from free charge. The result is that the more fundamental Gauss's law, in terms of \(\mathbf{E}\) (\S\ref{sec:eqEfield}), is sometimes put into the equivalent form below, which is in terms of \(\mathbf{D}\) and the free charge only.
+
+\subsection{Integral form}
+This formulation of Gauss's law states the total charge form: 
+\[
+    \Phi_D = Q_\text{free}
+\]
+where \(\Phi_D\) is the \(\mathbf{D}\)-field flux through a surface \(S\) which encloses a volume \(V\), and \(Q_\text{free}\) is the free charge contained in \(V\). The flux \(\Phi_D\) is defined analogously to the flux \(\Phi_E\) of the electric field \(\mathbf{E}\) through \(S\): 
+\[
+    \Phi_D = \oiint_S \mathbf{D} \cdot \mathrm{d} \mathbf{A}
+\]
+
+\subsection{Differential form}
+The differential form of Gauss's law, involving free charge only, states: 
+\[
+    \nabla \cdot \mathbf{D} = \rho_\text{free}
+\]
+where \(\nabla \cdot \mathbf{D}\) is the divergence of the electric displacement field, and \(\rho_\text{free}\) is the free electric charge density. 
+
+\subsection{Equivalence of total and free charge statements}
+\begin{mdframed}[%
+    style=mystyle,%
+    frametitle={Proof that the formulations of Gauss's law in terms of free charge are equivalent to the formulations involving total charge.}]
+
+In this proof, we will show that the equation 
+\[
+    \nabla \cdot \mathbf{E} = \frac{\rho}{\varepsilon_0}
+\]
+is equivalent to the equation 
+\[
+    \nabla \cdot \mathbf{D} = \rho_\text{free}
+\]
+
+Note that we are only dealing with the differential forms, not the integral forms, but that is sufficient since the differential and integral forms are equivalent in each case, by the divergence theorem. 
+
+We introduce the polarization density \(\mathbf{P}\), which has the following relation to \(\mathbf{E}\) and \(\mathbf{D}\): 
+\[
+    \mathbf{D} = \varepsilon_0\mathbf{E} + \mathbf{P}
+\]
+and the following relation to the bound charge:
+\[
+    \rho_\text{bound} = -\nabla \cdot \mathbf{P}
+\]
+Now, consider the three equations: 
+\begin{align*}
+    \rho_\text{bound} &= \nabla \cdot ( - \mathbf{P})\\
+    \rho_\text{free}  &= \nabla \cdot \mathbf{D} \\
+    \rho              &= \nabla \cdot (\varepsilon_0\mathbf{E})
+\end{align*}
+
+The key insight is that the sum of the first two equations is the third equation. This completes the proof: The first equation is true by definition, and therefore the second equation is true if and only if the third equation is true. So the second and third equations are equivalent, which is what we wanted to prove. 
+\end{mdframed}
+
+\section{Equation for linear materials}
+In homogeneous, isotropic, nondispersive, linear materials, there is a simple relationship between \(\mathbf{E}\) and \(\mathbf{D}\):
+\[
+    \mathbf{D} = \varepsilon\mathbf{E}
+\]
+where \(\varepsilon\) is the permittivity of the material. For the case of vacuum (aka free space), \(\varepsilon = \varepsilon_0\). Under these circumstances, Gauss's law modifies to 
+\[
+    \Phi_E = \frac{Q_\text{free}}{\varepsilon}
+\]
+for the integral form, and
+\[
+    \nabla \cdot \mathbf{E} = \frac{\rho_\text{free}}{\varepsilon}
+\]
+for the differential form.
+
+\section{Interpretations}
+\subsection{In terms of fields of force}
+Gauss's theorem can be interpreted in terms of the lines of force of the field as follows:
+
+The flux through a closed surface is dependent upon both the magnitude and direction of the electric field lines penetrating the surface. In general a positive flux is defined by these lines leaving the surface and negative flux by lines entering this surface. This results in positive charges causing a positive flux and negative charges creating a negative flux. These electric field lines will extend to infinite decreasing in strength by a factor of one over the distance from the source of the charge squared. The larger the number of field lines emanating from a charge the larger the magnitude of the charge is, and the closer together the field lines are the greater the magnitude of the electric field. This has the natural result of the electric field becoming weaker as one moves away from a charged particle, but the surface area also increases so that the net electric field exiting this particle will stay the same. In other words the closed integral of the electric field and the dot product of the derivative of the area will equal the net charge enclosed divided by permittivity of free space. 
+
+\section{Relation to Coulomb's law}
+\subsection{Deriving Gauss's law from Coulomb's law}
+Strictly speaking, Gauss's law cannot be derived from Coulomb's law alone, since Coulomb's law gives the electric field due to an individual point charge only. However, Gauss's law can be proven from Coulomb's law if it is assumed, in addition, that the electric field obeys the superposition principle. The superposition principle says that the resulting field is the vector sum of fields generated by each particle (or the integral, if the charges are distributed smoothly in space). 
+
+\begin{mdframed}[%
+    style=mystyle,%
+    frametitle={Outline of proof}]
+
+Coulomb's law states that the electric field due to a stationary point charge is: 
+\[
+    \mathbf{E}(\mathbf{r}) = \frac{q}{4 \pi \varepsilon_0} \frac{\hat{\mathbf{r}}}{r^2}
+\]
+where
+\begin{itemize}[noitemsep]
+    \item \(\hat{\mathbf{r}}\) is the radial unit vector,
+    \item \(r\) is the radius \(|\mathbf{r}|\),
+    \item \(\varepsilon_0\) is the electric constant,
+    \item \(q\) is the charge of the particle, which is assumed to be located at the origin.
+\end{itemize}
+
+Using the expression from Coulomb's law, we get the total field at \(\mathbf{r}\) by using an integral to sum the field at \(\mathbf{r}\) due to the infinitesimal charge at each other point \(\mathbf{s}\) in space, to give 
+\[
+    \mathbf{E}(\mathbf{r}) = \frac{1}{4 \pi \varepsilon_0} 
+        \int \frac{\rho(\mathbf{s})(\mathbf{r} - \mathbf{s})}{|\mathbf{r} - \mathbf{s}|^3}
+            \, \mathrm{d}^{3}\mathbf{s}
+\]
+where \(\rho\) is the charge density. If we take the divergence of both sides of this equation with respect to \(\mathbf{r}\), and use the known theorem
+\[
+    \nabla \cdot \left ( \frac{\mathbf{r}}{|\mathbf{r}|^3} \right ) = 4\pi \delta(\mathbf{r})
+\]
+where \(\delta(\mathbf{r})\) is the Dirac Delta function, the result is
+\[
+    \nabla \cdot \mathbf{E}(\mathbf{r}) 
+    = \frac{1}{\varepsilon_0} \int \rho(\mathbf{s}) 
+        \delta (\mathbf{r} - \mathbf{s}) \, \mathrm{d}^{3}\mathbf{s}
+\]
+Using the ``sifting property'' of the Dirac delta function, we arrive at 
+\[
+    \nabla \cdot \mathbf{E}(\mathbf{r}) = \frac{\rho(\mathbf{r})}{\varepsilon_0}
+\]
+which is the differential form of Gauss' law, as desired.
+\end{mdframed}
+Note that since Coulomb's law only applies to stationary charges, there is no reason to expect Gauss's law to hold for moving charges based on this derivation alone. In fact, Gauss's law does hold for moving charges, and in this respect Gauss's law is more general than Coulomb's law. 
+
+\subsubsection{Proof  (without Dirac Delta)}
+Let \(\Omega \subseteq \mathbb{R}^3\) be a bounded open set, and
+\[
+    \mathbf{E}_{0}(\mathbf{r}) = 
+    \frac{1}{4\pi \varepsilon_{0}}
+    \int_{\Omega} \rho(\mathbf{r}')
+    \frac{\mathbf{r} - \mathbf{r}'}{\left\|\mathbf {r} - \mathbf {r}'\right\|^{3}}
+    \mathop{\mathrm{d}\mathbf{r}'}
+    \equiv \frac{1}{4\pi \varepsilon _{0}}
+    \int_{\Omega} e(\mathbf {r,\mathbf {r} '}){\mathrm {d} \mathbf {r}'}
+\]
+be the electric field with \(\rho(\mathbf{r}'\) a continuous function (density of charge).
+\(\forall\mathbf{r} \neq \mathbf{r}'\) it's true that \(\nabla_\mathbf{r}  \cdot \mathbf{e} (\mathbf{r,r'} ) = 0\). 
+Let's consider now a compact set \(V \subseteq \mathbb{R}^3\) having a piecewise smooth boundary \(\partial V\) such that \(\Omega \cap V = \emptyset\). It follows that \(e(\mathbf{r},\mathbf{r}') \in C^1(V \times \Omega)\) and so, for the divergence theorem:
+\[
+    \oint_{\partial V} \mathbf{E}_0 \cdot \mathrm{d}\mathbf{S} = \int_V \nabla \cdot \mathbf{E}_0 \, \mathrm{d}V
+\]
+But because \(e(\mathbf{r},\mathbf{r}') \in C^1(V \times \Omega)\),
+\[
+    \nabla \cdot \mathbf{E}_0 = 
+    \frac{1}{4\pi\varepsilon_0}
+    \int_\Omega \nabla_\mathbf{r} \cdot e(\mathbf{r}, \mathbf{r}')\, \mathrm{d}\mathbf{r}' = 0
+\]
+for the argument above (\(\Omega \cap V = \emptyset \implies \forall \mathbf{r} \in V \forall \mathbf{r}' \in \Omega \; \mathbf{r} \neq \mathbf{r}'\) and then \(\nabla_\mathbf{r} \cdot e(\mathbf{r}, \mathbf{r}') = 0\)).
+
+And so the flux through a closed surface generated by some charge density outside (the surface) is null. 
+Let's consider now \(\mathbf{r}_0 \in \Omega\), and \(B_R(\mathbf{r}_0) \subseteq \Omega\) as the sphere centered in \(\mathbf{r}_0\) having \(R\) as radius (it exists because \(\Omega\) is an open set).
+Let \(\mathbf{E}_{B_R}\) and \(\mathbf{E}_C\) be the electric field created inside \slash outside the sphere:
+\begin{align*}
+    \mathbf{E}_{B_R} &= 
+    \frac{1}{4\pi\varepsilon_0}
+    \int\limits_{B_R(\mathbf{r}_0)}
+        e(\mathbf{r},\mathbf{r}') \, \mathrm{d}\mathbf{r}'
+    &
+    \mathbf{E}_C &=
+    \frac{1}{4\pi\varepsilon_0}
+    \int\limits_{\Omega \setminus B_R(\mathbf{r}_0)}
+        e(\mathbf{r},\mathbf{r}') \, \mathrm{d}\mathbf{r}'
+\end{align*}
+and
+\(\mathbf{E}_{B_R} + \mathbf{E}_C = \mathbf{E}_0\)
+\[
+    \Phi(R) = \oint\limits_{\partial B_R(\mathbf{r}_0)}
+        \mathbf{E}_0 \cdot \mathrm{d}\mathbf{S}
+    = \oint\limits_{\partial B_R(\mathbf{r}_0)}
+        \mathbf{E}_{B_R}
+        \cdot \mathrm{d}\mathbf{S}
+    + \oint\limits_{\partial B_R(\mathbf{r}_0)}
+        \mathbf{E}_C)
+        \cdot \mathrm{d}\mathbf{S}
+\]
+
+The last equality follows by observing that \((\Omega \setminus B_R(\mathbf{r}_0)) \cap B_R(\mathbf{r}_0) = \emptyset\), and the argument above.
+The RHS is the electric flux generated by a charged sphere, and so:
+\[
+    \Phi(R) = \frac{Q(R)}{\varepsilon_0}
+    = \frac{1}{\varepsilon_0}
+        \int\limits_{B_R(\mathbf{r}_0)}
+            \rho(\mathbf{r}') \, \mathrm{d}\mathbf{r}'
+    = \frac{1}{\varepsilon_0}
+        \rho(\mathbf{r}_c') |B_R(\mathbf{r}_0)|
+            \quad \text{with } r_c' \in B_R(\mathbf{r}_0)
+\]
+Where the last equality follows by the mean value theorem for integrals. Finally for the Squeeze theorem and the continuity of \(\rho\): 
+\[
+    \nabla \cdot \mathbf{E}_0(\mathbf{r}_0) =
+        \lim_{R \to 0} \frac{\Phi(R)}{|B_R(\mathbf{r}_0)|}
+    = \frac{\rho(\mathbf{r}_0)}{\varepsilon_0}
+\]
+
+\subsection{Deriving Coulomb's law from Gauss's law}
+Strictly speaking, Coulomb's law cannot be derived from Gauss's law alone, since Gauss's law does not give any information regarding the curl of \(\mathbf{E}\) (see Helmholtz decomposition and Faraday's law). However, Coulomb's law can be proven from Gauss's law if it is assumed, in addition, that the electric field from a point charge is spherically symmetric (this assumption, like Coulomb's law itself, is exactly true if the charge is stationary, and approximately true if the charge is in motion). 
+
+\begin{mdframed}[%
+    style=mystyle,%
+    frametitle={Outline of proof}]
+
+Taking \(S\) in the integral form of Gauss' law to be a spherical surface of radius \(r\), centered at the point charge \(Q\), we have 
+\[
+    \oint_S = \mathbf{E} \cdot \mathrm{d}\mathbf{A} = \frac{Q}{\varepsilon_0}
+\]
+By the assumption of spherical symmetry, the integrand is a constant which can be taken out of the integral. The result is 
+\[
+    4 \pi r^2 \hat{\mathbf{r}} \cdot \mathbf{E}(\mathbf{r}) = \frac{Q}{\varepsilon_0}
+\]
+where \(\hat{\mathbf{r}}\) is a unit vector pointing radially away from the charge. Again by spherical symmetry, \(\mathbf{E}\) points in the radial direction, and so we get 
+\[
+    \mathbf{E}(\mathbf{r}) = \frac{Q}{4 \pi \varepsilon_0} \frac{\hat{\mathbf{r}}}{r^2}
+\]
+which is essentially equivalent to Coulomb's law. Thus the inverse-square law dependence of the electric field in Coulomb's law follows from Gauss' law. 
+\end{mdframed}
+
+\appendix
+\section{Disclamer about this document}
+This document was made as an example to show how a document may be structured and typeset using \LaTeX. The contents of this document have been taken directly from \textit{Wikipedia, The Free Encyclopedia}, and have not been written nor edited in any way by myself. It is not in my competence to validate the correctness of the informations. I therefore advise not to use this document as a source of information for anything related to Gauss's law, but rather \emph{only} as an example of a \LaTeX document.
+
+
+\begin{thebibliography}{1}
+    \bibitem{wiki} Wikipedia contributors.
+        ``Gauss's law.''
+        \textit{Wikipedia, The Free Encyclopedia.}
+        Wikipedia, The Free Encyclopedia, 1 Mar. 2020. Web. 6 Mar. 2020. 
+\end{thebibliography}
+\end{document}
