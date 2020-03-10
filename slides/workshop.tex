@@ -10,6 +10,16 @@
 \usepackage{booktabs}
 \usepackage{array}
 
+% pretty drawings
+\usepackage{tikz}
+\usetikzlibrary{%
+    decorations.pathreplacing,%
+    decorations.pathmorphing%
+}
+
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+
 \usepackage{listings}
 %% create a lstlisting style
 \lstdefinestyle{samplestyle}{
@@ -60,6 +70,35 @@
 \begin{document}
 \begin{frame}
 \maketitle
+\end{frame}
+
+\begin{frame}{Why \textrm{\LaTeX}}
+	\begin{center}
+		\begin{tikzpicture}
+			\begin{axis}[
+				smooth, samples = 100,
+				axis lines = left,
+				axis line style = { thick },
+				width = \textwidth,
+				height = \axisdefaultheight,
+				grid style = dashed,
+				xlabel = Complexity,
+				ylabel = Difficulty,
+				x label style={at={(axis description cs:1,.1)},anchor=east},
+				ytick = \empty,
+				xtick = {2, 4, 6, 11, 13, 16, 20, 22},
+				xticklabels = {Text, Figures, Tables, Math, Plots, Diagrams, Thesis, Book},
+				x tick label style = { rotate = 80, anchor = east, font=\footnotesize },
+				legend style = { legend pos = north west },
+				no markers, domain = 0:25,
+			]
+				\plot[very thick, hsr-mauve60, domain=0:14]{exp(x/3 - 2.5)};
+				\addlegendentry{Word}
+				\plot[very thick, hsr-blue]{3/(1 + exp(-2*(x-2.5))) + x/50*exp((x-4)/12)};
+				\addlegendentry{\textrm{\LaTeX}}
+			\end{axis}
+		\end{tikzpicture}
+	\end{center}
 \end{frame}
 
 \begin{frame}{Goal: Learn to typeset something like this}
@@ -115,7 +154,7 @@ You may also use
 \textbf{Bold},
 \textit{Italic},
 \textsf{Sans-Serif},
-\textsc{SmallCaps}\footnote{The font used in this presentation does not have a smallcaps style},
+\textsc{SmallCaps}\footnote{The font used in this presentation does not have smallcaps shapes},
 \textrm{Roman} or
 \texttt{Typewriter}.
 \end{exampleblock}
@@ -239,7 +278,57 @@ You may also use
 \begin{frame}{Figures}
 \end{frame}
 
-\begin{frame}{Cross-References}
+\begin{frame}[fragile]{Cross-References}
+\begin{lstlisting}
+\section{Introduction} 
+... will be discussed in \S \ref{sec:nvstokes} ...
+
+\section{Stokes equation} \label{sec:nvstokes}
+\end{lstlisting}
+
+\begin{exampleblock}{Document}
+\textbf{1\; Introduction} \\[.2em]
+\ldots{} will be discussed in \S 4 \ldots{}
+\\[1em]
+
+\textbf{4\; Stokes Equation} \\[.2em]
+\ldots{}
+\end{exampleblock}
+
+\begin{alertblock}{Pro Tip}
+Use prefixes such as \texttt{sec:}, \texttt{fig:}, \texttt{tab:} to avoid mistakes.
+\end{alertblock}
+\end{frame}
+
+\begin{frame}[fragile]{Cross-References}
+\begin{columns}
+\begin{column}{.5\linewidth}
+\begin{lstlisting}
+\begin{figure} % or table
+  \includegraphics{...}
+  \caption{Reflection and refraction of electromagnetic waves.}
+  \label{fig:refl}
+\end{figure}
+
+... as shown in figure
+\ref{fig:refl} ...
+\end{lstlisting}
+\end{column}
+\begin{column}{.5\linewidth}
+\begin{exampleblock}{Figure reference}
+\begin{figure}[h]
+	\newsavebox\reflfigbox%
+	\begin{lrbox}{\reflfigbox}%
+		\input{figs/incidence.tikz}
+	\end{lrbox}
+	\resizebox{\textwidth}{!}{\usebox\reflfigbox}%
+	\caption{Reflection and refraction of electromagnetic waves.}
+	\label{fig:refract}
+\end{figure}
+\ldots{} as shown in figure \ref{fig:refract} \ldots{}
+\end{exampleblock}
+\end{column}
+\end{columns}
 \end{frame}
 
 \section{Mathematics}
