@@ -2,11 +2,15 @@
 \usefonttheme{serif}
 \usetheme{hsr}
 
+% use lmodern for math
+\usepackage{lmodern}
+
 % select font
 \usepackage[T1]{fontenc}
 \usepackage[usefilenames]{plex-otf}
 \renewcommand*\familydefault{\sfdefault}
 
+\usepackage{graphicx}
 \usepackage{booktabs}
 \usepackage{array}
 
@@ -51,8 +55,8 @@
 
 
 % metadata
-\title{\textrm{\LaTeX} Workshop}
-\author[NaoPross]{Naoki Pross \texttt{<npross@hsr.ch>}}
+\title{\textrm{\LaTeXe} Workshop}
+\author[NaoPross]{\texttt{Naoki Pross <npross@hsr.ch>}}
 \date{\today}
 
 \institute[HSR]{Hochschule f\"ur Technik Rapperswil}
@@ -72,7 +76,7 @@
 \maketitle
 \end{frame}
 
-\begin{frame}{Why \textrm{\LaTeX}}
+\begin{frame}{Why engineers should know \textrm{\LaTeX}}
 	\begin{center}
 		\begin{tikzpicture}
 			\begin{axis}[
@@ -87,8 +91,9 @@
 				x label style={at={(axis description cs:1,.1)},anchor=east},
 				ytick = \empty,
 				xtick = {2, 4, 6, 11, 13, 16, 20, 22},
-				xticklabels = {Text, Figures, Tables, Math, Plots, Diagrams, Thesis, Book},
-				x tick label style = { rotate = 80, anchor = east, font=\footnotesize },
+				xticklabels = {Text, Figures, Tables, Math, Plots, {Technical\\ Report}, Thesis, Book},
+				xticklabel style = {align = center},
+				x tick label style = { rotate = 70, anchor = east, font=\footnotesize },
 				legend style = { legend pos = north west },
 				no markers, domain = 0:25,
 			]
@@ -106,6 +111,24 @@
 		\vspace{1cm}
 		\includegraphics[width=.8\linewidth]{figs/gauss-flux}
 	\end{center}
+\end{frame}
+
+\begin{frame}{About this presentation}
+\begin{block}{Content}
+\begin{itemize}
+	\item \textrm{\LaTeX} is \emph{learn by doing} \\
+	\item Will be mostly examples
+	\item Sorry for the crowded slides
+\end{itemize}
+\end{block}
+
+\begin{exampleblock}{Example}
+Things in green boxes are examples
+\end{exampleblock}
+
+\begin{alertblock}{Tip}
+Things in red boxes are tips or extras
+\end{alertblock}
 \end{frame}
 
 \section{Introduction}
@@ -173,7 +196,7 @@ You may also use
 
 \begin{lstlisting}
 \begin{enumerate}
-  \item Discovery coffee
+  \item Discover coffee
   \item Get addicted
   \item Congratulations
 \end{enumerate}
@@ -190,7 +213,7 @@ You may also use
 \end{exampleblock}
 \begin{exampleblock}{Enumerate}
 	\begin{enumerate}
-		\item Discovery coffee
+		\item Discover coffee
 		\item Get addicted
 		\item Congratulations
 	\end{enumerate}
@@ -203,6 +226,7 @@ You may also use
 \begin{lstlisting}
 \begin{description}
   \item[Programmer] A person who is paid to professionally scream at a computer.
+  
   \item[Manager] A person who appears to know how all tasks should be accomplished but can't actually do any of those tasks themselves.
 \end{description}
 \end{lstlisting}
@@ -240,24 +264,24 @@ You may also use
 \begin{table}[h]
   \caption{Not up to date numbers}
   \begin{tabular}{l r r}
-    `\textcolor{hsr-mauve}{\textbackslash toprule\textsuperscript{1}}`
+    `\textcolor{hsr-mauve}{\textbackslash toprule}`
     Country & Infected & Deaths \\
-    `\textcolor{hsr-mauve}{\textbackslash midrule\textsuperscript{1}}`
+    `\textcolor{hsr-mauve}{\textbackslash midrule}`
     China       & 80'652 & 3'070 \\
     South Korea &  7'041 &    44 \\
     Italy       &  5'833 &   233 \\
-    `\textcolor{hsr-mauve}{\textbackslash bottomrule\textsuperscript{1}}`
+    `\textcolor{hsr-mauve}{\textbackslash bottomrule}`
   \end{tabular}
 \end{table}
 \end{lstlisting}
-\begin{alertblock}{\textsuperscript{1} Pro Tip}
+\begin{alertblock}{Pro Tip}
 	Add ``\texttt{\textbackslash usepackage\{booktabs\}}'' to use
 	rulers.
 \end{alertblock}
 \end{frame}
 
 \begin{frame}{Tables and tabular}
-\begin{exampleblock}{}
+\begin{exampleblock}{Example Table}
 \begin{table}
   \caption{Not up to date numbers}
   \begin{tabular}{l r r}
@@ -266,8 +290,7 @@ You may also use
     \midrule
     China       & 80'652 & 3'070 \\
     South Korea &  7'041 &    44 \\
-    Italy\footnote{Congratulations, your public health worse than Iran's}
-    &  5'833 &   233 \\
+    Italy       &  5'833 &   233 \\
     \bottomrule
   \end{tabular}
 \end{table}
@@ -296,7 +319,7 @@ You may also use
 \end{exampleblock}
 
 \begin{alertblock}{Pro Tip}
-Use prefixes such as \texttt{sec:}, \texttt{fig:}, \texttt{tab:} to avoid mistakes.
+Use prefixes such as \texttt{sec:, fig:, tab:, bib:, eqn:} to avoid mistakes.
 \end{alertblock}
 \end{frame}
 
@@ -333,19 +356,154 @@ Use prefixes such as \texttt{sec:}, \texttt{fig:}, \texttt{tab:} to avoid mistak
 
 \section{Mathematics}
 \begin{frame}{Math environments}
+\begin{table} \centering \Large
+\begin{tabular}{>{\tt}l >{\tt}c >{\tt}c}
+	\toprule
+	\textsf{Environment} & \textrm{\LaTeX{}}\footnote{This one is preferred} & \textrm{\TeX} \\
+	\midrule
+	math & \textbackslash ( \ldots{} \textbackslash ) & \$ \ldots{} \$ \\
+   displaymath & \textbackslash [ \ldots{} \textbackslash ] & \$\$ \ldots{} \$\$ \\
+   \bottomrule
+\end{tabular}
+\end{table}
 \end{frame}
 
-\begin{frame}{Math symbols and fonts}
+\begin{frame}[fragile]{Example}
+\begin{lstlisting}
+The Pythagoran Theorem states that for a right trangle with sides `\textcolor{hsr-blue}{\textbackslash(a,b,c\textbackslash)}` there is the relation
+\[
+    c^2 = a^2 + b^2
+\] 
+\end{lstlisting}
+
+\begin{exampleblock}{}
+The Pythagoran Theorem states that for a right trangle with sides \(a, b, c\) there is the relation
+\[
+    c^2 = a^2 + b^2
+\] 
+\end{exampleblock}
 \end{frame}
 
-\begin{frame}{Equations}
+\begin{frame}{Spacing and text in math mode}
 \end{frame}
 
-\begin{frame}{Spacing in math mode}
+\begin{frame}[fragile]{Sub. and Superscript}
+\begin{lstlisting}
+\[
+  c = \sqrt{a^2 + b^2 - 2ab \cos( \alpha_{ab} )}
+\]
+\end{lstlisting}
+\begin{exampleblock}{Cosine theorem}
+\LARGE
+\[
+  c = \sqrt{ a^2 + b^2 - 2ab \cos( \alpha_{ab} ) }
+\]
+\end{exampleblock}
+\end{frame}
+
+\begin{frame}[fragile]{Sum and Integral}
+\begin{lstlisting}
+\[
+  % math community meme
+  \sum_{k = 1}^{\infty} k = - \frac{1}{12}
+  \hspace{1.5cm}
+
+  % fourier transform
+  F(\omega) = \int\limits_{-\infty}^\infty 
+    f(t) e^{i\omega t} \mathrm{d}t
+\]
+\end{lstlisting}
+\begin{exampleblock}{}
+\[
+  \sum_{k = 1}^{\infty} k = - \frac{1}{12}
+  \hspace{1.5cm}
+  F(\omega) = \int\limits_{-\infty}^\infty f(t) e^{i\omega t} \,\mathrm{d}t
+\]
+\end{exampleblock}
+\end{frame}
+
+\begin{frame}[fragile]{Matrices}
+\begin{lstlisting}
+\[
+    \mathbf{J} = \begin{pmatrix}
+        0 & 1 \\
+        1 & 0 \\
+    \end{pmatrix}
+\]
+\end{lstlisting}
+\begin{exampleblock}{The complex matrix}
+\[
+    \mathbf{J} = \begin{pmatrix}
+        0 & 1 \\
+        1 & 0 \\
+    \end{pmatrix}
+    \hspace{1cm}    
+    \mathbf{R}_\phi = e^{\phi\mathbf{J}}
+\]
+\end{exampleblock}
+\end{frame}
+
+\begin{frame}[fragile]{Equations}
+\begin{lstlisting}
+Equation \ref{eqn:schroedinger} is the Schr\"odinger Equation that describes the evolution of a quantum state \(\psi\).
+
+\begin{equation} \label{eqn:schroedinger}
+  i\hbar \partial_t \psi =
+    - \frac{\hbar^2}{2m} \partial^2_x \psi + V\psi
+\end{equation}
+\end{lstlisting}
+
+\begin{exampleblock}{}
+Equation \ref{eqn:schroedinger} is the Schr\"odinger equation that describes the evolution of a quantum state \(\psi\).
+
+\begin{equation} \label{eqn:schroedinger}
+i\hbar\, \partial_t \psi = - \frac{\hbar^2}{2m}\, \partial^2_x \psi + V\psi
+\end{equation}
+\end{exampleblock}
+\end{frame}
+
+\begin{frame}[fragile]{Alignment}
+\begin{lstlisting}
+\begin{align*}
+    \nabla \cdot \mathbf{F}(1,1)
+      &= \partial_x f + \partial_y f \\
+      &= 2x + 3y^4 \\
+      &= 2 + 3 \\
+      &= 5
+\end{align*}
+\end{lstlisting}
+\begin{exampleblock}{}
+\begin{align*}
+    \nabla \cdot \mathbf{F}(1,1)
+      &= \partial_x f + \partial_y f \\
+      &= 2x + 3y^4 \\
+      &= 2 + 3 \\
+      &= 5
+\end{align*}
+\end{exampleblock}
+\end{frame}
+
+\begin{frame}{Math styles}
+\end{frame}
+
+\begin{frame}{Learn by doing: try to typeset these}
+\centering
+\scalebox{1.8}{%
+\begin{minipage}{.5\textwidth}
+\begin{align*}
+	x_{t+1} &= kx_t (1 - x_t) \\[1.2em]
+	H &= - \sum_{x \in \mathbb{X}} p(x) \log p(x) \\[1em]
+	\mathcal{L}^{-1}[F] &= 
+		\lim_{T \to \infty}
+		\frac{1}{2\pi i}
+		\int\limits_{\gamma - iT}^{\gamma + iT}
+		e^{st} F(s) \,\mathrm{d}s\\
+\end{align*}
+\end{minipage}}
 \end{frame}
 
 \section{Bibliography management}
-\begin{frame}{TheBibliography}
+\begin{frame}{The Bibliography}
 \end{frame}
 
 \begin{frame}{External bibliography}
