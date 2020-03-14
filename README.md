@@ -52,6 +52,7 @@ If you don't know which one to pick, TeXWorks is probably the simplest.
 - [Wikibooks LaTeX (online)](https://en.wikibooks.org/wiki/LaTeX#Contents)
 - [Introduction to LaTeX (online)](https://web.mit.edu/rsi/www/pdfs/new-latex.pdf)
 - [A not so short introduction to LaTeXe](references/lshort.pdf) ([online](https://tobi.oetiker.ch/lshort/lshort.pdf))
+- [Detexify LaTeX handwritten symbols recognition (online)](http://detexify.kirelabs.org/classify.html)
 - [LaTeX Mathematical Symbols (compact)](references/symbols-compact.pdf) ([online](https://www.caam.rice.edu/~heinken/latex/symbols.pdf))
 - [A comprehensive LaTeX Symbol List](references/symbols-a4.pdf) ([online](http://tug.ctan.org/info/symbols/comprehensive/symbols-a4.pdf))
 - [The LaTeX Font Catalogue (online)](https://www.tug.org/FontCatalogue/)
