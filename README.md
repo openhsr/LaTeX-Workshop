@@ -56,6 +56,7 @@ If you don't know which one to pick, TeXWorks is probably the simplest.
 - [LaTeX Mathematical Symbols (compact)](references/symbols-compact.pdf) ([online](https://www.caam.rice.edu/~heinken/latex/symbols.pdf))
 - [A comprehensive LaTeX Symbol List](references/symbols-a4.pdf) ([online](http://tug.ctan.org/info/symbols/comprehensive/symbols-a4.pdf))
 - [The LaTeX Font Catalogue (online)](https://www.tug.org/FontCatalogue/)
+- *Advanced!* [Graphics in LaTeX using TikZ (online)](https://www.tug.org/TUGboat/tb29-1/tb91walczak.pdf)
 - *Advanced!* [A very minimal introduction to TikZ (online)](http://cremeronline.com/LaTeX/minimaltikz.pdf)
 - *Advanced!* [CTAN Topic TikZ (online)](https://www.ctan.org/topic/pgf-tikz)
 - *Advanced!* [Manual for PGF and TikZ (online)](http://mirror.easyname.at/ctan/graphics/pgf/base/doc/pgfmanual.pdf)
