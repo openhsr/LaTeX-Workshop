@@ -48,6 +48,9 @@ If you don't know which one to pick, TeXWorks is probably the simplest.
 | TexMaker  | Linux, Mac, Windows | https://www.xm1math.net/texmaker/ |
 | TeXStudio | Linux, Mac, Windows | https://www.texstudio.org/        |
 
+Here is a (pretty old, but still relevant) comparison of various editors:
+https://tex.stackexchange.com/questions/339/latex-editors-ides
+
 ## Further readings and useful links
 - [Wikibooks LaTeX (online)](https://en.wikibooks.org/wiki/LaTeX#Contents)
 - [Introduction to LaTeX (online)](https://web.mit.edu/rsi/www/pdfs/new-latex.pdf)
