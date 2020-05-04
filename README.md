@@ -8,16 +8,24 @@ Figure: Screenshot of TeXWorks under Linux with the sample document `samples/gau
 ## Goals
   - [ ] Install LaTeX on your machine (ideally in the PreLab, before the WS takes place)
   - [ ] Understand what is TeX, LaTeX, XeLaTeX, CTAN, etc.
-  - [ ] Learn the basics of LaTeX to produce
-   - Text documents
-   - Mathematics
-   - Plots with pgfplots and
-   - Diagrams and figures with Tikz
+  - [ ] Learn the basics of LaTeX to typeset
+    - [ ] Text documents
+    - [ ] Mathematics
+    - [ ] Plots with pgfplots and
+    - [ ] Diagrams and figures with Tikz
   - [ ] Understand compiler errors
   - [ ] Bibliography management
+  - [ ] Create your own packages and classes
   - [ ] Integration with version control / Write collaboratively
+    - [ ] Contribute to https://github.com/HSR-Stud !
+
     
 ## Pre-Lab
+### Try LaTeX without installing
+
+You're not really convinced? Give LaTeX a try using a free online editor. 
+https://www.overleaf.com/project
+
 ### Install a TeX distribution
 
 On the [Official Website](https://www.latex-project.org/get/#tex-distributions) of the LaTeX project there are always updated links to the various TeX Distributions. We recommend to pick one of these below depending on your operating system.
@@ -36,7 +44,7 @@ If you are using a Debian / Ubuntu derivate the `texlive` package should install
 | MacTeX       | MacOS   | https://www.tug.org/mactex/index.html |
 | MikTeX       | Windows | https://miktex.org/                   |
 
-### Install a TeX editor
+### Get a (La)TeX editor
 
 If you don't know which one to pick, TeXWorks is probably the simplest.
 
@@ -47,6 +55,7 @@ If you don't know which one to pick, TeXWorks is probably the simplest.
 | TeXWorks  | Linux, Mac, Windows | https://www.tug.org/texworks/     |
 | TexMaker  | Linux, Mac, Windows | https://www.xm1math.net/texmaker/ |
 | TeXStudio | Linux, Mac, Windows | https://www.texstudio.org/        |
+| Overleaf  | Firefox, Chrome (online!) | https://www.overleaf.com/         |
 
 Here is a (pretty old, but still relevant) comparison of various editors:
 https://tex.stackexchange.com/questions/339/latex-editors-ides
@@ -64,7 +73,8 @@ https://tex.stackexchange.com/questions/339/latex-editors-ides
 - *Advanced!* [CTAN Topic TikZ (online)](https://www.ctan.org/topic/pgf-tikz)
 - *Advanced!* [Manual for PGF and TikZ (online)](http://mirror.easyname.at/ctan/graphics/pgf/base/doc/pgfmanual.pdf)
 - *Advanced!* [Manual for Package PGFPLOTS (online)](http://mirror.easyname.at/ctan/graphics/pgf/contrib/pgfplots/doc/pgfplots.pdf)
-- *Super Advanced!* [LaTeXe for class and package writers](references/clsguide.pdf) ([online](https://www.latex-project.org/help/documentation/clsguide.pdf))
+- *Advanced!* [Building a new LATEX document class is illustrated by developing a class forminutes of meetings (online)](http://tutex.tug.org/pracjourn/2005-4/hefferon/hefferon.pdf)
+- *Advanced!* [LaTeXe for class and package writers](references/clsguide.pdf) ([online](https://www.latex-project.org/help/documentation/clsguide.pdf))
 
 ## License
 ```
