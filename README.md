@@ -31,7 +31,7 @@ https://www.overleaf.com/project
 On the [Official Website](https://www.latex-project.org/get/#tex-distributions) of the LaTeX project there are always updated links to the various TeX Distributions. We recommend to pick one of these below depending on your operating system.
 
 *Note:* **A full LaTeX distributions needs a few Gigabytes!** You should download and install this in advance before the seminar!
-You *may* also install a minimal version, but beware that you may be missing some packages. Though some TeX distributions (like MikTeX) come with a package manager that will allow you to download some packages later.
+You *may* also install a minimal version (such as TinyTeX), but beware that you may be missing some packages. Though most TeX distributions come with a package manager that will allow you to download some packages later.
 
 *Note for Linux users:* You should install texlive through your package manager.
 If you are using a Debian / Ubuntu derivate the `texlive` package should install most of what you need.
@@ -43,6 +43,7 @@ If you are using a Debian / Ubuntu derivate the `texlive` package should install
 | TeX Live     | Linux   | https://www.tug.org/texlive/          |
 | MacTeX       | MacOS   | https://www.tug.org/mactex/index.html |
 | MikTeX       | Windows | https://miktex.org/                   |
+| TinyTex (are you feeling adventurous?) | Linux, MacOS, Windows | https://yihui.org/tinytex/            |
 
 ### Get a (La)TeX editor
 
