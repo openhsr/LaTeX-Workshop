@@ -38,12 +38,12 @@ If you are using a Debian / Ubuntu derivate the `texlive` package should install
 
 *Note for Windows users:* The default MikTeX installation only contains the minimal number of packages. MikTeX then offers a package management system to automatically downlad the missing packages as needed, but that means that your first document will take forever to compile. Be patient.
 
-| Distrubition | OS      | Homepage                              |
-|--------------|---------|---------------------------------------|
-| TeX Live     | Linux   | https://www.tug.org/texlive/          |
-| MacTeX       | MacOS   | https://www.tug.org/mactex/index.html |
-| MikTeX       | Windows | https://miktex.org/                   |
-| TinyTex (are you feeling adventurous?) | Linux, MacOS, Windows | https://yihui.org/tinytex/            |
+| Distrubition                   | OS                    | Homepage                              |
+|--------------------------------|-----------------------|---------------------------------------|
+| TeX Live                       | Linux                 | https://www.tug.org/texlive/          |
+| MacTeX                         | MacOS                 | https://www.tug.org/mactex/index.html |
+| MikTeX                         | Windows               | https://miktex.org/                   |
+| TinyTex (feeling adventurous?) | Linux, MacOS, Windows | https://yihui.org/tinytex/            |
 
 ### Get a (La)TeX editor
 
@@ -51,12 +51,17 @@ If you don't know which one to pick, TeXWorks is probably the simplest.
 
 *Note:* Your TeX distribution may already include an editor (for ex. TeXShop for MacTeX).
 
-| Name      | Supported OSs       | Homepage                          |
-|-----------|---------------------|-----------------------------------|
-| TeXWorks  | Linux, Mac, Windows | https://www.tug.org/texworks/     |
-| TexMaker  | Linux, Mac, Windows | https://www.xm1math.net/texmaker/ |
-| TeXStudio | Linux, Mac, Windows | https://www.texstudio.org/        |
-| Overleaf  | Firefox, Chrome (online!) | https://www.overleaf.com/         |
+| Name         | Supported OSs               | Homepage                                | Free?       |
+|--------------|-----------------------------|-----------------------------------------|-------------|
+| TeXWorks     | Linux, MacSO, Windows       | https://www.tug.org/texworks/           | Yes         |
+| TexMaker     | Linux, MacOS, Windows       | https://www.xm1math.net/texmaker/       | Yes         |
+| TeXStudio    | Linux, MacOS, Windows       | https://www.texstudio.org/              | Yes         |
+| Overleaf     | Firefox, Chrome (online!)   | https://www.overleaf.com/               | Yes         |
+| Texpad       | MacOS                       | https://www.texpad.com/                 | No, ~30 CHF |
+| TeXnicCenter | Windows                     | https://www.texniccenter.org/           | Yes         |
+| GNOME LaTeX  | Linux, MacOS                | https://wiki.gnome.org/Apps/GNOME-LaTeX | Yes         |
+| Compositor   | MacOS                       | https://compositorapp.com/              | No, ~30 CHF |
+
 
 Here is a (pretty old, but still relevant) comparison of various editors:
 https://tex.stackexchange.com/questions/339/latex-editors-ides
