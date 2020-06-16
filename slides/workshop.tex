@@ -7,7 +7,7 @@
 
 % select font
 \usepackage[T1]{fontenc}
-\usepackage[usefilenames]{plex-otf}
+\usepackage{plex-otf}
 \renewcommand*\familydefault{\sfdefault}
 
 \usepackage{graphicx}
@@ -57,23 +57,67 @@
 % metadata
 \title{\textrm{\LaTeXe} Workshop}
 \author[NaoPross]{\texttt{Naoki Pross <npross@hsr.ch>}}
-\date{April 2, Spring semester 2020}
+\date{Fall Semester 2020}
 
 \institute[HSR]{Hochschule f\"ur Technik Rapperswil}
 %\logo{\includegraphics[width=3cm]{figs/hsr-logo}}
 
 \AtBeginSection[]
 {
-  \begin{frame}
-    \frametitle{Table of Contents}
-    \tableofcontents[currentsection]
-  \end{frame}
+	\begin{frame}
+		\frametitle{Table of Contents}
+		\tableofcontents[currentsection]
+	\end{frame}
 }
 
 
 \begin{document}
 \begin{frame}
 \maketitle
+\end{frame}
+
+\begin{frame}{How do you write a document?}
+\begin{columns}
+	\begin{column}{.3\linewidth}
+		\begin{center}
+			\textbf{\large WYSWYG} \\
+			\vspace{1cm}
+			\vbox to 2cm {\vfil\hfil \hbox to 2cm {
+					\includegraphics[width=2cm]{figs/illustrator-logo}
+			} \hfil\vfil }
+			\vspace{1cm}
+			\vbox to 2cm {\vfil\hfil \hbox to 2cm {
+				\includegraphics[width=2cm]{figs/inkscape-logo}
+			} \hfil\vfil }
+		\end{center}
+	\end{column}
+	\begin{column}{.3\linewidth}
+		\uncover<2->{
+			\textbf{\large Worse at both} \\
+			\vspace{1cm}
+			\vbox to 2cm {\vfil\hfil \hbox to 2cm {
+				\includegraphics[width=2cm]{figs/ms-word-logo}
+			} \hfil\vfil }
+			\vspace{1cm}
+			\vbox to 2cm {\vfil\hfil \hbox to 2cm {
+				\includegraphics[width=2cm]{figs/pages-logo}
+			} \hfil\vfil }
+		}
+	\end{column}
+	\begin{column}{.3\linewidth}
+		\begin{center}
+			\textbf{\large Declarative, WYSWYAW} \\
+			\vspace{1cm}
+			\vbox to 2cm {\vfil\hfil \hbox to 2cm {
+				\resizebox{2cm}{!}{\textrm{\LaTeXe}}
+			} \hfil\vfil }
+			\vspace{1cm}
+			\vbox to 2cm {\vfil\hfil \hbox to 2cm {
+				\includegraphics[width=2cm]{figs/markdown-logo}
+			} \hfil\vfil }
+		\end{center}
+	\end{column}
+\end{columns}
 \end{frame}
 
 \begin{frame}{Why engineers should know \textrm{\LaTeX}}
@@ -591,3 +635,5 @@ i\hbar\, \partial_t \psi = - \frac{\hbar^2}{2m}\, \partial^2_x \psi + V\psi
 \end{frame}
 
 \end{document}
+
+% vim: set noet ts=2 sw=2 :
