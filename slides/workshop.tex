@@ -15,7 +15,7 @@
 \usepackage{array}
 
 % pretty drawings
-\usepackage{smartdiagram}
+\usepackage{forest}
 \usepackage{tikz}
 \usetikzlibrary{%
   decorations.pathreplacing,%
@@ -217,8 +217,9 @@ Things in red boxes are tips or extras
           \node[block, fill=hsr-mauve20] (TEX) at (2.5,2) {\textrm{\TeX}};
           \node[right] at (TEX.east) {1978};
 
-          \node[block] (CONTEXT) at (-1,.5) {\textrm{\hologo{ConTeXt}}};
-          \node[right] at (CONTEXT.east) {1996};
+          \node[block, color=hsr-black40, fill=hsr-lightgrey20] (CONTEXT) at (-1,.5) {\textrm{\hologo{ConTeXt}}};
+          \node[right, color=hsr-black40] at (CONTEXT.east) {1996};
+
           \node[block] (XETEX) at (0,-2) {\textrm{\hologo{XeTeX}}};
           \node[left] at (XETEX.west) {2004};
           \node[block] (LATEX) at (2.5,-1) {\textrm{\LaTeX}};
@@ -229,7 +230,7 @@ Things in red boxes are tips or extras
           \draw[thick, ->] (TEX) to[out=-90, in=90] (LATEX);
           \draw[thick, ->] (TEX) to[out=-90, in=90] (XETEX);
           \draw[thick, ->] (TEX) to[out=-90, in=90] (LUATEX);
-          \draw[thick, ->] (TEX) to[out=-90, in=90] (CONTEXT);
+          \draw[thick, ->, draw=hsr-black40] (TEX) to[out=-90, in=90] (CONTEXT);
 
           \node[block, fill=hsr-blue20] (XELATEX) at (1,-4) {\textrm{\hologo{XeLaTeX}}};
           \node[block, fill=hsr-blue20] (LUALATEX) at (4,-4) {\textrm{\hologo{LuaLaTeX}}};
@@ -247,7 +248,7 @@ Things in red boxes are tips or extras
 \end{frame}
 
 \section{Fundamentals}
-\begin{frame}{Source code spacing}
+\begin{frame}{Text}
 \end{frame}
 
 \begin{frame}[fragile]{Commands aka Macros}
@@ -309,7 +310,7 @@ Things in red boxes are tips or extras
 \end{frame}
 
 \begin{frame}[fragile]{Document structure}
-\begin{lstlisting}
+  \begin{lstlisting}
 \documentclass[a4paper]{article}
 
 % preamble
@@ -324,16 +325,92 @@ Things in red boxes are tips or extras
 ...
 
 \end{document}
-\end{lstlisting}
+  \end{lstlisting}
 \end{frame}
 
-\begin{frame}{Spacing and newlines}
+\begin{frame}[fragile]{Spacing and newlines}
+  \begin{block}{In general}
+    \Large \textrm{\LaTeX} does not care too much about whitespace
+  \end{block}
+
+  \begin{lstlisting}
+I can put        however many spaces    here.
+However if I leave    an empty   line, like  this
+
+LaTeX will in indent this sentence because
+it is a new paragraph.
+  \end{lstlisting}
+  \begin{exampleblock}{}
+    I can put      however many spaces    here.
+    However if I leave an empty   line, like this.
+
+    \vspace{10pt}
+    \hspace{2em} LaTeX will in indent this sentence because
+    it is a new paragraph.
+  \end{exampleblock}
 \end{frame}
 
 \begin{frame}{Packages and CTAN}
+  \begin{block}{What is CTAN}
+    \Large
+    The Comprehensive \textrm{\TeX} Archive Network is a set of Internet sites around the world that offer \textrm{\TeX}-related material for download. 
+  \end{block}
 \end{frame}
 
-\begin{frame}{Big projects}
+\begin{frame}[fragile]{Very big projects (like a thesis or book)}
+  \begin{columns}
+    \begin{column}{.5\linewidth}
+      \begin{lstlisting}
+\documentclass{thesis}
+\usepackage{tex/mystyle}
+% preamble ...
+
+\begin{document}
+  \maketitle
+  \tableofcontents
+
+  \include{tex/intro}
+  \include{tex/purpose}
+  % ...
+\end{document}
+      \end{lstlisting}
+    \end{column}
+    \begin{column}{.5\linewidth}
+      \begin{forest}
+      for tree={
+        font=\ttfamily,
+        grow'=0,
+        child anchor=west,
+        parent anchor=south,
+        anchor=west,
+        calign=first,
+        edge path={
+          \noexpand\path [draw, \forestoption{edge}]
+          (!u.south west) +(7.5pt,0) |- node[fill,inner sep=1.25pt] {} (.child anchor)\forestoption{edge label};
+        },
+        before typesetting nodes={
+          if n=1
+            {insert before={[,phantom]}}
+            {}
+        },
+        fit=band,
+        before computing xy={l=15pt},
+      }
+        [mybigproject/
+          [mybigproject.tex]
+          [fig/
+            [engine-diagram.eps]
+          ]
+          [tex/
+            [mystyle.sty]
+            [intro.tex]
+            [purpose.tex]
+            [...]
+          ]
+        ]
+      \end{forest}
+    \end{column}
+  \end{columns}
 \end{frame}
 
 \section{Basics}
@@ -362,9 +439,9 @@ You may also use
 \end{frame}
 
 \begin{frame}[fragile]{Lists}
-\begin{columns}
-\begin{column}{.5\linewidth}
-\begin{lstlisting}
+  \begin{columns}
+    \begin{column}{.5\linewidth}
+    \begin{lstlisting}
 \begin{itemize}
   \item Tomatoes
   \item Peppers
@@ -378,26 +455,26 @@ You may also use
   \item Get addicted
   \item Congratulations
 \end{enumerate}
-\end{lstlisting}
-\end{column}
+    \end{lstlisting}
+    \end{column}
 
-\begin{column}{.4\linewidth}
-\begin{exampleblock}{Itemize}
-  \begin{itemize}
-    \item Tomatoes
-    \item Peppers
-    \item Broccoli
-  \end{itemize}
-\end{exampleblock}
-\begin{exampleblock}{Enumerate}
-  \begin{enumerate}
-    \item Discover coffee
-    \item Get addicted
-    \item Congratulations
-  \end{enumerate}
-\end{exampleblock}
-\end{column}
-\end{columns}
+    \begin{column}{.4\linewidth}
+    \begin{exampleblock}{Itemize}
+      \begin{itemize}
+        \item Tomatoes
+        \item Peppers
+        \item Broccoli
+      \end{itemize}
+    \end{exampleblock}
+    \begin{exampleblock}{Enumerate}
+      \begin{enumerate}
+        \item Discover coffee
+        \item Get addicted
+        \item Congratulations
+      \end{enumerate}
+    \end{exampleblock}
+    \end{column}
+  \end{columns}
 \end{frame}
 
 \begin{frame}[fragile]{Description}
@@ -534,16 +611,16 @@ Use prefixes such as \texttt{sec:, fig:, tab:, bib:, eqn:} to avoid mistakes.
 
 \section{Mathematics}
 \begin{frame}{Math environments}
-\begin{table} \centering \Large
-\begin{tabular}{>{\tt}l >{\tt}c >{\tt}c}
-  \toprule
-  \textsf{Environment} & \textrm{\LaTeX{}} & \textcolor{hsr-lightgrey}{\textrm{\TeX}}\footnote{Don't use it}\\
-  \midrule
-  math & \textbackslash ( \ldots{} \textbackslash ) & \textcolor{hsr-lightgrey}{\$ \ldots{} \$} \\
-   displaymath & \textbackslash [ \ldots{} \textbackslash ] & \textcolor{hsr-lightgrey}{\$\$ \ldots{} \$\$} \\
-   \bottomrule
-\end{tabular}
-\end{table}
+  \begin{table} \centering \Large
+    \begin{tabular}{>{\tt}l >{\tt}c >{\tt}c}
+      \toprule
+      \textsf{Environment} & \textrm{\LaTeX{}} & \textcolor{hsr-lightgrey}{\textrm{\TeX}}\footnote{Don't use them in \textrm{\LaTeX}. \textbf{For real: don't use them}.}\\
+      \midrule
+      math & \textbackslash ( \ldots{} \textbackslash ) & \textcolor{hsr-lightgrey}{\$ \ldots{} \$} \\
+       displaymath & \textbackslash [ \ldots{} \textbackslash ] & \textcolor{hsr-lightgrey}{\$\$ \ldots{} \$\$} \\
+       \bottomrule
+    \end{tabular}
+  \end{table}
 \end{frame}
 
 \begin{frame}[fragile]{Example}
@@ -603,20 +680,20 @@ The Pythagoran Theorem states that for a right trangle with sides \(a, b, c\) th
 \begin{frame}[fragile]{Matrices}
 \begin{lstlisting}
 \[
-    \mathbf{J} = \begin{pmatrix}
-        0 & 1 \\
-        1 & 0 \\
-    \end{pmatrix}
+  \mathbf{J} = \begin{pmatrix}
+    0 & 1 \\
+    1 & 0 \\
+  \end{pmatrix}
 \]
 \end{lstlisting}
 \begin{exampleblock}{The complex matrix}
 \[
-    \mathbf{J} = \begin{pmatrix}
-        0 & 1 \\
-        1 & 0 \\
-    \end{pmatrix}
-    \hspace{1cm}    
-    \mathbf{R}_\phi = e^{\phi\mathbf{J}}
+  \mathbf{J} = \begin{pmatrix}
+    0 & 1 \\
+    1 & 0 \\
+  \end{pmatrix}
+  \hspace{1cm}    
+  \mathbf{R}_\phi = e^{\phi\mathbf{J}}
 \]
 \end{exampleblock}
 \end{frame}
@@ -643,7 +720,7 @@ i\hbar\, \partial_t \psi = - \frac{\hbar^2}{2m}\, \partial^2_x \psi + V\psi
 \begin{frame}[fragile]{Alignment}
 \begin{lstlisting}
 \begin{align*}
-  \nabla \cdot \mathbf{F}(1,1)
+  \nabla \mathbf{\cdot} \mathbf{F}(1,1)
     &= \partial_x f + \partial_y f \\
     &= 2x + 3y^4 \\
     &= 2 + 3 \\
@@ -652,7 +729,7 @@ i\hbar\, \partial_t \psi = - \frac{\hbar^2}{2m}\, \partial^2_x \psi + V\psi
 \end{lstlisting}
 \begin{exampleblock}{}
 \begin{align*}
-  \nabla \cdot \mathbf{F}(1,1)
+  \nabla \mathbf{\cdot} \mathbf{F}(1,1)
     &= \partial_x f + \partial_y f \\
     &= 2x + 3y^4 \\
     &= 2 + 3 \\
@@ -699,4 +776,4 @@ i\hbar\, \partial_t \psi = - \frac{\hbar^2}{2m}\, \partial^2_x \psi + V\psi
 
 \end{document}
 
-% vim:et:ts=2:sw=2:
+% vim:et:ts=2:sw=2:wrap:nolinebreak:
