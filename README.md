@@ -11,13 +11,17 @@ Figure: Screenshot of TeXWorks under Linux with the sample document `samples/gau
   - [ ] Learn the basics of LaTeX to typeset
     - [ ] Text documents
     - [ ] Mathematics
-    - [ ] Plots with pgfplots and
-    - [ ] Diagrams and figures with Tikz
+    - [ ] Diagrams with IPE
   - [ ] Understand compiler errors
   - [ ] Bibliography management
-  - [ ] Create your own packages and classes
   - [ ] Integration with version control / Write collaboratively
     - [ ] Contribute to https://github.com/HSR-Stud !
+
+## Extras (if there is time)
+  - [ ] Create your own packages and classes
+  - [ ] Typeset
+    - [ ] Plots with pgfplots and
+    - [ ] Diagrams and figures with Tikz
 
     
 ## Pre-Lab
@@ -30,13 +34,13 @@ https://www.overleaf.com/project
 
 On the [Official Website](https://www.latex-project.org/get/#tex-distributions) of the LaTeX project there are always updated links to the various TeX Distributions. We recommend to pick one of these below depending on your operating system.
 
-*Note:* **A full LaTeX distributions needs a few Gigabytes!** You should download and install this in advance before the seminar!
+**Note: A full LaTeX distributions may need a few Gigabytes!** You should download and install this in advance before the seminar!
 You *may* also install a minimal version (such as TinyTeX), but beware that you may be missing some packages. Though most TeX distributions come with a package manager that will allow you to download some packages later.
 
-*Note for Linux users:* You should install texlive through your package manager.
+**Note for Linux users:** You may install texlive through your package manager.
 If you are using a Debian / Ubuntu derivate the `texlive` package should install most of what you need.
 
-*Note for Windows users:* The default MikTeX installation only contains the minimal number of packages. MikTeX then offers a package management system to automatically downlad the missing packages as needed, but that means that your first document will take forever to compile. Be patient.
+**Note for Windows users:** The default MikTeX installation only contains the minimal number of packages. MikTeX then offers a package management system to automatically downlad the missing packages as needed, but that means that your first document will take forever to compile. Be patient.
 
 | Distrubition                   | OS                    | Homepage                              |
 |--------------------------------|-----------------------|---------------------------------------|
@@ -53,7 +57,7 @@ If you don't know which one to pick, TeXWorks is probably the simplest.
 
 | Name         | Supported OSs               | Homepage                                | Free?       |
 |--------------|-----------------------------|-----------------------------------------|-------------|
-| TeXWorks     | Linux, MacSO, Windows       | https://www.tug.org/texworks/           | Yes         |
+| TeXWorks     | Linux, MacOS, Windows       | https://www.tug.org/texworks/           | Yes         |
 | TexMaker     | Linux, MacOS, Windows       | https://www.xm1math.net/texmaker/       | Yes         |
 | TeXStudio    | Linux, MacOS, Windows       | https://www.texstudio.org/              | Yes         |
 | Overleaf     | Firefox, Chrome (online!)   | https://www.overleaf.com/               | Yes         |
