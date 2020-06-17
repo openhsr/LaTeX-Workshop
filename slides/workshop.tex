@@ -1,11 +1,11 @@
-\documentclass[xetex, onlymath]{beamer}
+\documentclass[xetex, onlymath, handout]{beamer}
 \usefonttheme{serif}
 \usetheme{hsr}
 
 % use lmodern for math
 \usepackage{lmodern}
 
-% select font
+% use plex font serif
 \usepackage[T1]{fontenc}
 \usepackage{plex-otf}
 \renewcommand*\familydefault{\sfdefault}
@@ -15,43 +15,48 @@
 \usepackage{array}
 
 % pretty drawings
+\usepackage{smartdiagram}
 \usepackage{tikz}
 \usetikzlibrary{%
-    decorations.pathreplacing,%
-    decorations.pathmorphing%
+  decorations.pathreplacing,%
+  decorations.pathmorphing%
 }
 
 \usepackage{pgfplots}
 \pgfplotsset{compat=1.15}
 
+% source code
 \usepackage{listings}
 %% create a lstlisting style
 \lstdefinestyle{samplestyle}{
-    belowcaptionskip=\baselineskip,
-    breaklines=true,
-    frame=none,
-    inputencoding=utf8,
-    % margin
-    xleftmargin=\parindent,
-    % numbers
-    numbers=left,
-    numbersep=5pt,
-    numberstyle=\ttfamily\footnotesize\color{hsr-black40},
-    % background
-    backgroundcolor=\color{hsr-lightgrey20},
-    % default language:
-    language=[LaTeX]TeX,
-    showstringspaces=false,
-    % font
-    basicstyle=\ttfamily\small,
-    identifierstyle=\color{hsr-black},
-    keywordstyle=\color{hsr-blue},
-    commentstyle=\color{hsr-black40},
-    stringstyle=\color{hsr-mauve80},
+  belowcaptionskip=\baselineskip,
+  breaklines=true,
+  frame=none,
+  inputencoding=utf8,
+  % margin
+  xleftmargin=\parindent,
+  % numbers
+  numbers=left,
+  numbersep=5pt,
+  numberstyle=\ttfamily\footnotesize\color{hsr-black40},
+  % background
+  backgroundcolor=\color{hsr-lightgrey20},
+  % default language:
+  language=[LaTeX]TeX,
+  showstringspaces=false,
+  % font
+  basicstyle=\ttfamily\small,
+  identifierstyle=\color{hsr-black},
+  keywordstyle=\color{hsr-blue},
+  commentstyle=\color{hsr-black40},
+  stringstyle=\color{hsr-mauve80},
 }
 
 %% and set the chosen style
 \lstset{style=samplestyle, escapechar=`}
+
+% logos
+\usepackage{hologo}
 
 
 % metadata
@@ -64,10 +69,10 @@
 
 \AtBeginSection[]
 {
-	\begin{frame}
-		\frametitle{Table of Contents}
-		\tableofcontents[currentsection]
-	\end{frame}
+  \begin{frame}
+    \frametitle{Table of Contents}
+    \tableofcontents[currentsection]
+  \end{frame}
 }
 
 
@@ -78,91 +83,91 @@
 
 \begin{frame}{How do you write a document?}
 \begin{columns}
-	\begin{column}{.3\linewidth}
-		\begin{center}
-			\textbf{\large WYSWYG} \\
-			\vspace{1cm}
-			\vbox to 2cm {\vfil\hfil \hbox to 2cm {
-					\includegraphics[width=2cm]{figs/illustrator-logo}
-			} \hfil\vfil }
-			\vspace{1cm}
-			\vbox to 2cm {\vfil\hfil \hbox to 2cm {
-				\includegraphics[width=2cm]{figs/inkscape-logo}
-			} \hfil\vfil }
-		\end{center}
-	\end{column}
-	\begin{column}{.3\linewidth}
-		\uncover<2->{
-			\textbf{\large Worse at both} \\
-			\vspace{1cm}
-			\vbox to 2cm {\vfil\hfil \hbox to 2cm {
-				\includegraphics[width=2cm]{figs/ms-word-logo}
-			} \hfil\vfil }
-			\vspace{1cm}
-			\vbox to 2cm {\vfil\hfil \hbox to 2cm {
-				\includegraphics[width=2cm]{figs/pages-logo}
-			} \hfil\vfil }
-		}
-	\end{column}
-	\begin{column}{.3\linewidth}
-		\begin{center}
-			\textbf{\large Declarative, WYSWYAW} \\
-			\vspace{1cm}
-			\vbox to 2cm {\vfil\hfil \hbox to 2cm {
-				\resizebox{2cm}{!}{\textrm{\LaTeXe}}
-			} \hfil\vfil }
-			\vspace{1cm}
-			\vbox to 2cm {\vfil\hfil \hbox to 2cm {
-				\includegraphics[width=2cm]{figs/markdown-logo}
-			} \hfil\vfil }
-		\end{center}
-	\end{column}
+  \begin{column}{.3\linewidth}
+    \begin{center}
+      {\large Looks good but no structure} \\
+      \vspace{1cm}
+      \vbox to 2cm {\vfil\hfil \hbox to 2cm {
+          \includegraphics[width=2cm]{figs/illustrator-logo}
+      } \hfil\vfil }
+      \vspace{1cm}
+      \vbox to 2cm {\vfil\hfil \hbox to 2cm {
+        \includegraphics[width=2cm]{figs/inkscape-logo}
+      } \hfil\vfil }
+    \end{center}
+  \end{column}
+  \begin{column}{.3\linewidth}
+    \uncover<2->{
+      \textbf{\large ``WYSWYG'' Worse at both} \\
+      \vspace{1cm}
+      \vbox to 2cm {\vfil\hfil \hbox to 2cm {
+        \includegraphics[width=2cm]{figs/ms-word-logo}
+      } \hfil\vfil }
+      \vspace{1cm}
+      \vbox to 2cm {\vfil\hfil \hbox to 2cm {
+        \includegraphics[width=2cm]{figs/pages-logo}
+      } \hfil\vfil }
+    }
+  \end{column}
+  \begin{column}{.3\linewidth}
+    \begin{center}
+      {\large Declarative, structured} \\
+      \vspace{1cm}
+      \vbox to 2cm {\vfil\hfil \hbox to 2cm {
+        \resizebox{2cm}{!}{\textrm{\LaTeXe}}
+      } \hfil\vfil }
+      \vspace{1cm}
+      \vbox to 2cm {\vfil\hfil \hbox to 2cm {
+        \includegraphics[width=2cm]{figs/markdown-logo}
+      } \hfil\vfil }
+    \end{center}
+  \end{column}
 \end{columns}
 \end{frame}
 
 \begin{frame}{Why engineers should know \textrm{\LaTeX}}
-	\begin{center}
-		\begin{tikzpicture}
-			\begin{axis}[
-				smooth, samples = 100,
-				axis lines = left,
-				axis line style = { thick },
-				width = \textwidth,
-				height = \axisdefaultheight,
-				grid style = dashed,
-				xlabel = Complexity,
-				ylabel = Difficulty,
-				x label style={at={(axis description cs:1,.1)},anchor=east},
-				ytick = \empty,
-				xtick = {2, 4, 6, 11, 13, 16, 20, 22},
-				xticklabels = {Text, Figures, Tables, Math, Plots, {Technical\\ Report}, Thesis, Book},
-				xticklabel style = {align = center},
-				x tick label style = { rotate = 70, anchor = east, font=\footnotesize },
-				legend style = { legend pos = north west },
-				no markers, domain = 0:25,
-			]
-				\plot[very thick, hsr-mauve60, domain=0:14]{exp(x/3 - 2.5)};
-				\addlegendentry{Word}
-				\plot[very thick, hsr-blue]{3/(1 + exp(-2*(x-2.5))) + x/50*exp((x-4)/12)};
-				\addlegendentry{\textrm{\LaTeX}}
-			\end{axis}
-		\end{tikzpicture}
-	\end{center}
+  \begin{center}
+    \begin{tikzpicture}
+      \begin{axis}[
+        smooth, samples = 100,
+        axis lines = left,
+        axis line style = { thick },
+        width = \textwidth,
+        height = \axisdefaultheight,
+        grid style = dashed,
+        xlabel = Complexity,
+        ylabel = Difficulty,
+        x label style={at={(axis description cs:1,.1)},anchor=east},
+        ytick = \empty,
+        xtick = {2, 4, 6, 11, 13, 16, 20, 22},
+        xticklabels = {Text, Figures, Tables, Math, Plots, {Technical\\ Report}, Thesis, Book},
+        xticklabel style = {align = center},
+        x tick label style = { rotate = 70, anchor = east, font=\footnotesize },
+        legend style = { legend pos = north west },
+        no markers, domain = 0:25,
+      ]
+        \plot[very thick, hsr-mauve60, domain=0:14]{exp(x/3 - 2.5)};
+        \addlegendentry{Word}
+        \plot[very thick, hsr-blue]{3/(1 + exp(-2*(x-2.5))) + x/50*exp((x-4)/12)};
+        \addlegendentry{\textrm{\LaTeX}}
+      \end{axis}
+    \end{tikzpicture}
+  \end{center}
 \end{frame}
 
 \begin{frame}{Goal: Learn to typeset something like this}
-	\begin{center}
-		\vspace{1cm}
-		\includegraphics[width=.8\linewidth]{figs/gauss-flux}
-	\end{center}
+  \begin{center}
+    \vspace{1cm}
+    \includegraphics[width=.8\linewidth]{figs/gauss-flux}
+  \end{center}
 \end{frame}
 
 \begin{frame}{About this presentation}
 \begin{block}{Content}
 \begin{itemize}
-	\item \textrm{\LaTeX} is \emph{learn by doing} \\
-	\item Will be mostly examples
-	\item Sorry for the crowded slides
+  \item \textrm{\LaTeX} is \emph{learn by doing} \\
+  \item Will be mostly examples
+  \item Sorry for the crowded slides
 \end{itemize}
 \end{block}
 
@@ -175,12 +180,70 @@ Things in red boxes are tips or extras
 \end{alertblock}
 \end{frame}
 
-\section{Introduction}
-
-\begin{frame}{What is Typesetting}
+\begin{frame}{Do yourself a favor}
+  \begin{alertblock}{Use the International US Keyboard Layout}
+    \centering
+    \vspace{3pt}
+    % \includegraphics[height=9em]{figs/kbd-sg}
+    % \\[5pt]
+    \includegraphics[height=9em]{figs/kbd-us-intl}
+  \end{alertblock}
 \end{frame}
 
-\begin{frame}{History \& \textrm{\LaTeX}}
+\begin{frame}{History of \textrm{\TeX}, what should you use?}
+  \begin{columns}
+    \begin{column}{.2\textwidth}
+      \begin{figure} \centering
+        \includegraphics[height=8em]{figs/knuth}
+      \end{figure}
+      \begin{figure} \centering
+        \includegraphics[height=8em]{figs/lamport}
+      \end{figure}
+    \end{column}
+    \hfill
+    \begin{column}{.8\textwidth}
+      \begin{figure} \centering
+        \begin{tikzpicture}
+          \tikzset{
+            block/.style = {
+              draw, thick, rectangle,
+              minimum height = 1cm,
+              minimum width = 2cm,
+              rounded corners,
+              fill = hsr-lightgrey20,
+            }
+          }
+
+          \node[block, fill=hsr-mauve20] (TEX) at (2.5,2) {\textrm{\TeX}};
+          \node[right] at (TEX.east) {1978};
+
+          \node[block] (CONTEXT) at (-1,.5) {\textrm{\hologo{ConTeXt}}};
+          \node[right] at (CONTEXT.east) {1996};
+          \node[block] (XETEX) at (0,-2) {\textrm{\hologo{XeTeX}}};
+          \node[left] at (XETEX.west) {2004};
+          \node[block] (LATEX) at (2.5,-1) {\textrm{\LaTeX}};
+          \node[left] at (LATEX.west) {1984};
+          \node[block] (LUATEX) at (5,-2) {\textrm{\hologo{LuaTeX}}};
+          \node[left] at (LUATEX.west) {2007};
+
+          \draw[thick, ->] (TEX) to[out=-90, in=90] (LATEX);
+          \draw[thick, ->] (TEX) to[out=-90, in=90] (XETEX);
+          \draw[thick, ->] (TEX) to[out=-90, in=90] (LUATEX);
+          \draw[thick, ->] (TEX) to[out=-90, in=90] (CONTEXT);
+
+          \node[block, fill=hsr-blue20] (XELATEX) at (1,-4) {\textrm{\hologo{XeLaTeX}}};
+          \node[block, fill=hsr-blue20] (LUALATEX) at (4,-4) {\textrm{\hologo{LuaLaTeX}}};
+
+          \draw[thick, ->] (XETEX) to[out=-90, in=90] (XELATEX);
+          \draw[thick, ->] (LATEX) to[out=-90, in=90] (XELATEX);
+
+          \draw[thick, ->] (LUATEX) to[out=-90, in=90] (LUALATEX);
+          \draw[thick, ->] (LATEX) to[out=-90, in=90] (LUALATEX);
+
+        \end{tikzpicture}
+      \end{figure}
+    \end{column}
+  \end{columns}
 \end{frame}
 
 \section{Fundamentals}
@@ -320,18 +383,18 @@ You may also use
 
 \begin{column}{.4\linewidth}
 \begin{exampleblock}{Itemize}
-	\begin{itemize}
-		\item Tomatoes
-		\item Peppers
-		\item Broccoli
-	\end{itemize}
+  \begin{itemize}
+    \item Tomatoes
+    \item Peppers
+    \item Broccoli
+  \end{itemize}
 \end{exampleblock}
 \begin{exampleblock}{Enumerate}
-	\begin{enumerate}
-		\item Discover coffee
-		\item Get addicted
-		\item Congratulations
-	\end{enumerate}
+  \begin{enumerate}
+    \item Discover coffee
+    \item Get addicted
+    \item Congratulations
+  \end{enumerate}
 \end{exampleblock}
 \end{column}
 \end{columns}
@@ -356,21 +419,21 @@ You may also use
 
 \begin{frame}{Floating elements}
 \begin{table}
-	\caption{Floats placing permissions}
-	\begin{tabular}{>{\ttfamily}l l}
-		\toprule
-		\textsf{Specifier} & Permission \\
-		\midrule
-		h & Place around here \\
-		t & At the top of the page \\
-		b & At the bottom of the page \\
-		p & On a special page containing only floats \\
-		! & ``I don't care if it will be ugly'' \\
-		H\footnote{Requires the ``\texttt{float}'' package, i.e. 
-			``\texttt{\textbackslash usepackage\{float\}}''} 
-		  & Place \textbf{exactly here} (may look very ugly) \\
-		\bottomrule
-	\end{tabular}
+  \caption{Floats placing permissions}
+  \begin{tabular}{>{\ttfamily}l l}
+    \toprule
+    \textsf{Specifier} & Permission \\
+    \midrule
+    h & Place around here \\
+    t & At the top of the page \\
+    b & At the bottom of the page \\
+    p & On a special page containing only floats \\
+    ! & ``I don't care if it will be ugly'' \\
+    H\footnote{Requires the ``\texttt{float}'' package, i.e. 
+      ``\texttt{\textbackslash usepackage\{float\}}''} 
+      & Place \textbf{exactly here} (may look very ugly) \\
+    \bottomrule
+  \end{tabular}
 \end{table}
 \end{frame}
 
@@ -390,8 +453,8 @@ You may also use
 \end{table}
 \end{lstlisting}
 \begin{alertblock}{Pro Tip}
-	Add ``\texttt{\textbackslash usepackage\{booktabs\}}'' to use
-	rulers.
+  Add ``\texttt{\textbackslash usepackage\{booktabs\}}'' to use
+  rulers.
 \end{alertblock}
 \end{frame}
 
@@ -455,13 +518,13 @@ Use prefixes such as \texttt{sec:, fig:, tab:, bib:, eqn:} to avoid mistakes.
 \begin{column}{.5\linewidth}
 \begin{exampleblock}{Figure reference}
 \begin{figure}[h]
-	\newsavebox\reflfigbox%
-	\begin{lrbox}{\reflfigbox}%
-		\input{figs/incidence.tikz}
-	\end{lrbox}
-	\resizebox{\textwidth}{!}{\usebox\reflfigbox}%
-	\caption{Reflection and refraction of electromagnetic waves.}
-	\label{fig:refract}
+  \newsavebox\reflfigbox%
+  \begin{lrbox}{\reflfigbox}%
+    \input{figs/incidence.tikz}
+  \end{lrbox}
+  \resizebox{\textwidth}{!}{\usebox\reflfigbox}%
+  \caption{Reflection and refraction of electromagnetic waves.}
+  \label{fig:refract}
 \end{figure}
 \ldots{} as shown in figure \ref{fig:refract} \ldots{}
 \end{exampleblock}
@@ -473,11 +536,11 @@ Use prefixes such as \texttt{sec:, fig:, tab:, bib:, eqn:} to avoid mistakes.
 \begin{frame}{Math environments}
 \begin{table} \centering \Large
 \begin{tabular}{>{\tt}l >{\tt}c >{\tt}c}
-	\toprule
-	\textsf{Environment} & \textrm{\LaTeX{}}\footnote{This one is preferred} & \textrm{\TeX} \\
-	\midrule
-	math & \textbackslash ( \ldots{} \textbackslash ) & \$ \ldots{} \$ \\
-   displaymath & \textbackslash [ \ldots{} \textbackslash ] & \$\$ \ldots{} \$\$ \\
+  \toprule
+  \textsf{Environment} & \textrm{\LaTeX{}} & \textcolor{hsr-lightgrey}{\textrm{\TeX}}\footnote{Don't use it}\\
+  \midrule
+  math & \textbackslash ( \ldots{} \textbackslash ) & \textcolor{hsr-lightgrey}{\$ \ldots{} \$} \\
+   displaymath & \textbackslash [ \ldots{} \textbackslash ] & \textcolor{hsr-lightgrey}{\$\$ \ldots{} \$\$} \\
    \bottomrule
 \end{tabular}
 \end{table}
@@ -560,7 +623,7 @@ The Pythagoran Theorem states that for a right trangle with sides \(a, b, c\) th
 
 \begin{frame}[fragile]{Equations}
 \begin{lstlisting}
-Equation \ref{eqn:schroedinger} is the Schr\"odinger Equation that describes the evolution of a quantum state \(\psi\).
+Equation \ref{eqn:schroedinger} is the Schrödinger Equation that describes the evolution of a quantum state \(\psi\).
 
 \begin{equation} \label{eqn:schroedinger}
   i\hbar \partial_t \psi =
@@ -569,7 +632,7 @@ Equation \ref{eqn:schroedinger} is the Schr\"odinger Equation that describes the
 \end{lstlisting}
 
 \begin{exampleblock}{}
-Equation \ref{eqn:schroedinger} is the Schr\"odinger equation that describes the evolution of a quantum state \(\psi\).
+Equation \ref{eqn:schroedinger} is the Schrödinger equation that describes the evolution of a quantum state \(\psi\).
 
 \begin{equation} \label{eqn:schroedinger}
 i\hbar\, \partial_t \psi = - \frac{\hbar^2}{2m}\, \partial^2_x \psi + V\psi
@@ -580,20 +643,20 @@ i\hbar\, \partial_t \psi = - \frac{\hbar^2}{2m}\, \partial^2_x \psi + V\psi
 \begin{frame}[fragile]{Alignment}
 \begin{lstlisting}
 \begin{align*}
-    \nabla \cdot \mathbf{F}(1,1)
-      &= \partial_x f + \partial_y f \\
-      &= 2x + 3y^4 \\
-      &= 2 + 3 \\
-      &= 5
+  \nabla \cdot \mathbf{F}(1,1)
+    &= \partial_x f + \partial_y f \\
+    &= 2x + 3y^4 \\
+    &= 2 + 3 \\
+    &= 5
 \end{align*}
 \end{lstlisting}
 \begin{exampleblock}{}
 \begin{align*}
-    \nabla \cdot \mathbf{F}(1,1)
-      &= \partial_x f + \partial_y f \\
-      &= 2x + 3y^4 \\
-      &= 2 + 3 \\
-      &= 5
+  \nabla \cdot \mathbf{F}(1,1)
+    &= \partial_x f + \partial_y f \\
+    &= 2x + 3y^4 \\
+    &= 2 + 3 \\
+    &= 5
 \end{align*}
 \end{exampleblock}
 \end{frame}
@@ -606,13 +669,13 @@ i\hbar\, \partial_t \psi = - \frac{\hbar^2}{2m}\, \partial^2_x \psi + V\psi
 \scalebox{1.8}{%
 \begin{minipage}{.5\textwidth}
 \begin{align*}
-	x_{t+1} &= kx_t (1 - x_t) \\[1.2em]
-	H &= - \sum_{x \in \mathbb{X}} p(x) \log p(x) \\[1em]
-	\mathcal{L}^{-1}[F] &= 
-		\lim_{T \to \infty}
-		\frac{1}{2\pi i}
-		\int\limits_{\gamma - iT}^{\gamma + iT}
-		e^{st} F(s) \,\mathrm{d}s\\
+  x_{t+1} &= kx_t (1 - x_t) \\[1.2em]
+  H &= - \sum_{x \in \mathbb{X}} p(x) \log p(x) \\[1em]
+  \mathcal{L}^{-1}[F] &= 
+    \lim_{T \to \infty}
+    \frac{1}{2\pi i}
+    \int\limits_{\gamma - iT}^{\gamma + iT}
+    e^{st} F(s) \,\mathrm{d}s\\
 \end{align*}
 \end{minipage}}
 \end{frame}
@@ -636,4 +699,4 @@ i\hbar\, \partial_t \psi = - \frac{\hbar^2}{2m}\, \partial^2_x \psi + V\psi
 
 \end{document}
 
-% vim: set noet ts=2 sw=2 :
+% vim:et:ts=2:sw=2:
