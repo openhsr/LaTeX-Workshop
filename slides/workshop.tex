@@ -5,6 +5,10 @@
 % use lmodern for math
 \usepackage{lmodern}
 
+% math packages
+\usepackage{amsmath}
+\usepackage{amssymb}
+
 % use plex font serif
 \usepackage[T1]{fontenc}
 \usepackage{plex-otf}
@@ -61,10 +65,10 @@
 
 % metadata
 \title{\textrm{\LaTeXe} Workshop}
-\author[NaoPross]{\texttt{Naoki Pross <npross@hsr.ch>}}
-\date{Fall Semester 2020}
+\author[NaoPross]{\texttt{Naoki Pross <np@0hm.ch>}}
+\date{Spring Semester 2021}
 
-\institute[HSR]{Hochschule f\"ur Technik Rapperswil}
+\institute[HSR]{University for Applied Sciences of Eastern Switzerland}
 %\logo{\includegraphics[width=3cm]{figs/hsr-logo}}
 
 \AtBeginSection[]
@@ -85,7 +89,7 @@
 \begin{columns}
   \begin{column}{.3\linewidth}
     \begin{center}
-      {\large Looks good but no structure} \\
+      {\large Appearance before structure} \\
       \vspace{1cm}
       \vbox to 2cm {\vfil\hfil \hbox to 2cm {
           \includegraphics[width=2cm]{figs/illustrator-logo}
@@ -98,7 +102,7 @@
   \end{column}
   \begin{column}{.3\linewidth}
     \uncover<2->{
-      \textbf{\large ``WYSWYG'' Worse at both} \\
+      \textbf{\large ``WYSWYG'' worse at both} \\
       \vspace{1cm}
       \vbox to 2cm {\vfil\hfil \hbox to 2cm {
         \includegraphics[width=2cm]{figs/ms-word-logo}
@@ -111,7 +115,7 @@
   \end{column}
   \begin{column}{.3\linewidth}
     \begin{center}
-      {\large Declarative, structured} \\
+      {\large Structure before appearance} \\
       \vspace{1cm}
       \vbox to 2cm {\vfil\hfil \hbox to 2cm {
         \resizebox{2cm}{!}{\textrm{\LaTeXe}}
@@ -417,7 +421,7 @@ it is a new paragraph.
 \begin{frame}[fragile]{Emphasis, Bold, Italic, \ldots}
 \begin{lstlisting}
 This is \emph{emphatized}.
-You may also use
+You may, but should not, also use
 \textbf{Bold},
 \textit{Italic},
 \textsf{Sans-Serif},
@@ -531,7 +535,7 @@ You may also use
 \end{lstlisting}
 \begin{alertblock}{Pro Tip}
   Add ``\texttt{\textbackslash usepackage\{booktabs\}}'' to use
-  rulers.
+  rulers. Do not use vertical rulers.
 \end{alertblock}
 \end{frame}
 
@@ -642,6 +646,34 @@ The Pythagoran Theorem states that for a right trangle with sides \(a, b, c\) th
 \begin{frame}{Spacing and text in math mode}
 \end{frame}
 
+\begin{frame}[fragile]{Math styles}
+With the packages \texttt{amsmath}, \texttt{amssymb}
+\begin{lstlisting}
+\[
+  \mathrm{R}   \quad % roman
+  \mathit{R}   \quad % italic
+  \mathbf{R}   \quad % bold
+  \mathsf{R}   \quad % sans-serif
+  \mathtt{R}   \quad % typewriter
+  \mathbb{R}   \quad % blackboard bold
+  \mathcal{R}  \quad % calligraphy
+  \mathfrak{R}       % fraktur
+\]
+\end{lstlisting}
+\begin{exampleblock}{}
+\LARGE \(
+  \mathrm{R}   \quad
+  \mathit{R}   \quad
+  \mathbf{R}   \quad
+  \mathsf{R}   \quad
+  \mathtt{R}   \quad
+  \mathbb{R}   \quad
+  \mathcal{R}  \quad
+  \mathfrak{R}
+\)
+\end{exampleblock}
+\end{frame}
+
 \begin{frame}[fragile]{Sub. and Superscript}
 \begin{lstlisting}
 \[
@@ -665,14 +697,14 @@ The Pythagoran Theorem states that for a right trangle with sides \(a, b, c\) th
 
   % fourier transform
   F(\omega) = \int\limits_{-\infty}^\infty 
-    f(t) e^{i\omega t} \mathrm{d}t
+    f(t) e^{-i\omega t} \mathrm{d}t
 \]
 \end{lstlisting}
 \begin{exampleblock}{}
 \[
   \sum_{k = 1}^{\infty} k = - \frac{1}{12}
   \hspace{1.5cm}
-  F(\omega) = \int\limits_{-\infty}^\infty f(t) e^{i\omega t} \,\mathrm{d}t
+  F(\omega) = \int\limits_{-\infty}^\infty f(t) e^{-i\omega t} \,\mathrm{d}t
 \]
 \end{exampleblock}
 \end{frame}
@@ -700,7 +732,7 @@ The Pythagoran Theorem states that for a right trangle with sides \(a, b, c\) th
 
 \begin{frame}[fragile]{Equations}
 \begin{lstlisting}
-Equation \ref{eqn:schroedinger} is the Schrödinger Equation that describes the evolution of a quantum state \(\psi\).
+Equation \eqref{eqn:schroedinger} is the Schrödinger Equation that describes the evolution of a quantum state \(\psi\).
 
 \begin{equation} \label{eqn:schroedinger}
   i\hbar \partial_t \psi =
@@ -709,7 +741,7 @@ Equation \ref{eqn:schroedinger} is the Schrödinger Equation that describes the 
 \end{lstlisting}
 
 \begin{exampleblock}{}
-Equation \ref{eqn:schroedinger} is the Schrödinger equation that describes the evolution of a quantum state \(\psi\).
+Equation \eqref{eqn:schroedinger} is the Schrödinger equation that describes the evolution of a quantum state \(\psi\).
 
 \begin{equation} \label{eqn:schroedinger}
 i\hbar\, \partial_t \psi = - \frac{\hbar^2}{2m}\, \partial^2_x \psi + V\psi
@@ -736,9 +768,6 @@ i\hbar\, \partial_t \psi = - \frac{\hbar^2}{2m}\, \partial^2_x \psi + V\psi
     &= 5
 \end{align*}
 \end{exampleblock}
-\end{frame}
-
-\begin{frame}{Math styles}
 \end{frame}
 
 \begin{frame}{Learn by doing: try to typeset these}
