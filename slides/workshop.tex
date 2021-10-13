@@ -57,6 +57,17 @@
   stringstyle=\color{hsr-mauve80},
 }
 
+\lstdefinelanguage{BibTeX}
+  {keywords={%
+      @article,@book,@collectedbook,@conference,@electronic,@ieeetranbstctl,%
+      @inbook,@incollectedbook,@incollection,@injournal,@inproceedings,%
+      @manual,@mastersthesis,@misc,@patent,@periodical,@phdthesis,@preamble,%
+      @proceedings,@standard,@string,@techreport,@unpublished%
+      },
+   comment=[l][\itshape]{@comment},
+   sensitive=false,
+}
+
 %% and set the chosen style
 \lstset{style=samplestyle, escapechar=`}
 
@@ -915,10 +926,87 @@ i\hbar\, \partial_t \psi = - \frac{\hbar^2}{2m}\, \partial^2_x \psi + V\psi
 \end{frame}
 
 \section{Bibliography management}
-\begin{frame}{The Bibliography}
+\begin{frame}[fragile]{The Bibliography}
+\begin{alertblock}{}
+  \large
+  Only for \textbf{very short} bibliographies!
+\end{alertblock}
+
+\begin{lstlisting}[]
+The industrial-technological society cannot be reformed in such a way as to prevent it from progresively narrowing down the sphere of human freedom\cite{unabomber}.
+\end{lstlisting}
+\vspace{3mm}
+\begin{lstlisting}[escapechar = ~]
+\begin{thebibliography}{99} % widest label
+  % manually set up MLA style
+  \bibitem{unabomber} Kaczynski, Theodore.
+    \textit{``Industrial Society and Its Future.''}
+    The Washington Post, 19 Sept. 1995.
+\end{thebibliography}
+\end{lstlisting}
 \end{frame}
 
-\begin{frame}{External bibliography}
+\begin{frame}[fragile]{External bibliography (Better)}
+Put in the preamble:
+\begin{lstlisting}[]
+%% Citations
+\usepackage[
+  backend = biber, % or bibtex (older sw.)
+  style = ieee, % or any other
+]{biblatex}
+
+\addbibresource{MyDocument.bib}
+\end{lstlisting}
+and then
+\begin{lstlisting}[]
+\begin{document}
+% ...
+\printbibliography
+\end{document}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{BibTeX files (Example I)}
+\begin{lstlisting}[font=\footnotesize, language = BibTeX]
+@article{Alimohammad2009,
+  title     = {Compact Rayleigh and Rician fading simulator based on random walk processes},
+  author    = {Alimohammad, A. and Fard, S.F. and Cockburn, B.F. and Schlegel, C.},
+  journal   = {IET Commun.},
+  publisher = {Institution of Engineering and Technology (IET)},
+  volume    = {3},
+  number    = {8},
+  pages     = {1333},
+  year      = {2009},
+  language  = {en}
+}
+\end{lstlisting}
+\end{frame}
+\begin{frame}[fragile]{BibTeX files (Example II)}
+\begin{lstlisting}[font=\footnotesize, language = BibTeX]
+@inproceedings{Tidal,
+  author    = {Macmillan, Alex and Marina, Mahesh K. and Triana, Jhair Tocancipa},
+  booktitle = {2010 INFOCOM IEEE Conference on Computer Communications Workshops},
+  title     = {Slow Frequency Hopping for Mitigating Tidal Fading on Rural Long Distance Over-Water Wireless Links},
+  year      = {2010},
+  pages     = {1-5},
+  doi       = {10.1109/INFCOMW.2010.5466612}
+}
+\end{lstlisting}
+\end{frame}
+\begin{frame}[fragile]{BibTeX files (Example III)}
+\begin{lstlisting}[font=\footnotesize, language = BibTeX]
+@book{Griffith,
+  title     = {Introduction to Electrodynamics, Fourth Edition},
+  author    = {Griffiths, David J.},
+  year      = {2017},
+  publisher = {Cambridge University Press; 4th edition},
+  isbn      = {978-1108420419}
+}
+\end{lstlisting}
+and many more
+\begin{lstlisting}[language = BibTeX]
+@article @book @collectedbook @conference @electronic @ieeetranbstctl  @inbook @incollectedbook @incollection @injournal @inproceedings  @manual @mastersthesis @misc @patent @periodical @phdthesis @preamble  @proceedings @standard @string @techreport @unpublished
+\end{lstlisting}
 \end{frame}
 
 \section{Extras}
