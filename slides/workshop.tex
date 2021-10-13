@@ -499,23 +499,25 @@ it is a new paragraph.
 
 \begin{frame}[fragile]{Very big projects (like a thesis or a book)}
   \begin{columns}
-    \begin{column}{.5\linewidth}
+    \begin{column}{.6\linewidth}
       \begin{lstlisting}
 \documentclass{thesis}
+
 \usepackage{tex/mystyle}
+\usepackage{tex/docmacros}
 % preamble ...
 
 \begin{document}
   \maketitle
   \tableofcontents
 
-  \include{tex/intro}
-  \include{tex/purpose}
+  \include{chapters/intro}
+  \include{chapters/purpose}
   % ...
 \end{document}
       \end{lstlisting}
     \end{column}
-    \begin{column}{.5\linewidth}
+    \begin{column}{.4\linewidth}
       \begin{forest}
       for tree={
         font=\ttfamily,
@@ -538,14 +540,16 @@ it is a new paragraph.
       }
         [mybigproject/
           [mybigproject.tex]
-          [fig/
-            [engine-diagram.eps]
+          [figures/
+            [reactor.eps]
           ]
           [tex/
             [mystyle.sty]
+            [docmacros.sty]
+          ]
+          [chapters/
             [intro.tex]
             [purpose.tex]
-            [...]
           ]
         ]
       \end{forest}
