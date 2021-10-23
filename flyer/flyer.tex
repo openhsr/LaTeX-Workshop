@@ -1,0 +1,147 @@
+% vim: set et sw=2 ts=2 spell:
+\documentclass{article}
+
+\usepackage[fixed]{fontawesome5}
+\usepackage{roboto}
+\usepackage{roboto-mono}
+% \usepackage{beramono}
+
+\usepackage[a5paper, hmargin = 2.5cm, vmargin=2cm]{geometry}
+
+\usepackage{hyperref}
+\hypersetup{colorlinks = false,}
+
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\renewcommand{\vec}[1]{\mathbf{#1}}
+\DeclareMathOperator{\dotp}{\mathbf{\cdot}}
+
+\begin{document}
+  \thispagestyle{empty}
+  \vfill
+
+  % Background
+
+  \begin{tikzpicture}[
+      remember picture,
+      overlay,
+      text = lightgray,
+      font = \bfseries,
+      every node/.style = {
+        scale = 3,
+      },
+    ]
+
+    \useasboundingbox (current page.north west) -- (current page.south east);
+    \coordinate (O) at (current page.center);
+
+    \node[rotate = 20, xshift = 5mm, yshift = 32mm] at (O) {\(
+      \displaystyle
+      \vec{\nabla}^2 \vec{H} 
+        - \mu\sigma \frac{\partial\vec{H}}{\partial t}
+        - \mu\varepsilon \frac{\partial^2 \vec{H}}{\partial t^2}
+      = \vec{0}
+    \)};
+
+    \node[rotate = -10, xshift = 10mm, yshift = 19mm] at (O) {\(
+      \displaystyle
+      H = - \sum_{x \in \mathbb{X}} p(x) \log p(x)
+    \)};
+
+    \node[rotate = 10, xshift = 25mm, yshift = 5mm] at (O) {\(
+      \displaystyle
+      \oint_{\partial S} \vec{E} \dotp d\vec{l}
+        = -\frac{d}{dt} \int_S \vec{B} \dotp d\vec{s}
+    \)};
+
+    \node[rotate = -5, xshift = -20mm, yshift = 3mm] at (O) {\(
+      \displaystyle
+      X(\Omega) = \int_\mathbb{R} x(t) e^{j\Omega t} \,dt
+    \)};
+
+    \node[scale = .7, rotate = 3, xshift = 15mm, yshift = -12mm] at (O) {\(
+      \displaystyle
+      \nabla^2 f = \nabla \cdot \nabla f = \sum_{i = 1}^n \frac{\partial^2 f}{\partial x_i^2}
+    \)};
+
+    \node[scale = .7, rotate = 5, xshift = 25mm, yshift = -30mm] at (O) {\(
+      \displaystyle
+      \sum_{i < j} \begin{vmatrix}
+        u_i & v_i \\
+        u_j & v_j
+      \end{vmatrix} \vec{e}_i \vec{e}_j
+      = \vec{u} \wedge \vec{v}
+    \)};
+
+    \node[scale = .6, rotate = -8, xshift = -30mm, yshift = -18mm] at (O) {\(
+      \displaystyle
+      \sigma_2 = \begin{bmatrix}
+        0 & -i \\
+        i & 0 \\
+      \end{bmatrix}
+    \)};
+
+    \node[rotate = 20, xshift = -30mm, yshift = -15mm] at (O) {\(
+      \displaystyle
+      E | \Psi \rangle =
+      \hat{\mathrm{H}} | \Psi \rangle
+    \)};
+
+    \node[scale = .6, rotate = -5, xshift = -15mm, yshift = -55mm] at (O) {\(
+      \displaystyle
+      f'(x) = \lim_{h \to 0} \frac{f(x + h) - f(x)}{h}
+    \)};
+
+    \node[scale = .8, rotate = 5, xshift = 20mm, yshift = -42mm] at (O) {\(
+      \displaystyle
+      \|f\|_\infty = \sup_{x \in [a,b]} | f |
+    \)};
+  \end{tikzpicture}
+
+  % Content
+
+  \begin{center}
+    {\Huge\bfseries \LaTeXe{} \textsf{Workshop}} \\[4mm]
+    {\sffamily\large Naoki Pross --- Open\textbackslash{}\textbf{OST}}
+  \end{center}
+
+  \vspace{10mm}
+
+  \sffamily\large
+
+  \begin{itemize}
+    \item[\faIcon{calendar-check}] 25. November, 17\textsuperscript{00} \~{} 19\textsuperscript{00}
+    \item[\faIcon{map-marker-alt}] Campus Rapperswil Room XYZ
+    \item[\faIcon{github}] \href{https://github.com/OpenHSR/LaTeX-Workshop}{\texttt{OpenHSR/LaTeX-Workshop}}
+    \item[\faIcon{laptop}] Take your laptop!
+  \end{itemize}
+
+  \vspace{15mm}
+
+  {\rmfamily\noindent
+    Does this font look familiar to you?
+    It's \LaTeX{}'s default font, the standard typesetting tool in Academia!
+    If you want your Bachelor thesis to look good, you have to learn \LaTeX{}!
+  }
+
+  \vspace{15mm}
+
+  \begin{itemize}
+    \item[\faIcon{users}] Targeted at beginner to intermediate users
+    \item[\faIcon{comments}] Presentation + Help to get you started
+    \item[\faIcon{flask}] Workshop content
+      \begin{itemize}
+        \item Absolute basics
+        \item Typeset mathematics
+        \item Bibliography management
+      \end{itemize}
+    \item[\faIcon{fast-forward}] Extras (if there is time): Source code listings. Drawings with \textrm{Ti\textit{k}Z}. Plot data with PGFPlots.
+  \end{itemize}
+
+  \vfill
+\end{document}
+
