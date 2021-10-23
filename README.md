@@ -6,25 +6,25 @@ This repository contains the documentation for the OpenHSR introductory LaTeX wo
 Figure: Screenshot of TeXWorks under Linux with the sample document `samples/gauss-flux.tex`
 
 ## Goals
-  - [ ] Install LaTeX on your machine (ideally in the PreLab, before the WS takes place)
-  - [ ] Understand what is TeX, LaTeX, XeLaTeX, CTAN, etc.
-  - [ ] Learn the basics of LaTeX to typeset
-    - [ ] Text documents
-    - [ ] Mathematics
-    - [ ] Diagrams with IPE
-  - [ ] Understand compiler errors
-  - [ ] Bibliography management
-  - [ ] Integration with version control / Write collaboratively
-    - [ ] Contribute to https://github.com/HSR-Stud !
+  - Install LaTeX on your machine (ideally before the workshop takes place)
+  - Understand what is TeX, LaTeX, XeLaTeX, CTAN, etc.
+  - Learn the basics of LaTeX to typeset
+    - Text documents
+    - Mathematics
+  - Understand compiler errors
+  - Bibliography management
+  - Integration with version control / Write collaboratively
+    - Contribute to https://github.com/HSR-Stud !
 
 ## Extras (if there is time)
-  - [ ] Create your own packages and classes
-  - [ ] Typeset
-    - [ ] Plots with pgfplots and
-    - [ ] Diagrams and figures with Tikz
+  - Create your own packages and classes
+  - Add source code listings
+  - Plots with pgfplots and
+  - Diagrams and figures with TikZ
+  - Diagrams with IPE
 
-    
-## Pre-Lab
+## Homeworks
+
 ### Try LaTeX without installing
 
 You're not really convinced? Give LaTeX a try using a free online editor. 
