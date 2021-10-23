@@ -558,6 +558,10 @@ it is a new paragraph.
 \end{frame}
 
 \section{Basics}
+\begin{frame}[fragile]{Headings}
+\end{frame}
+
+
 \begin{frame}[fragile]{Emphasis, Bold, Italic, \ldots}
 \begin{lstlisting}
 This is \emph{emphatized}.
@@ -619,6 +623,9 @@ You may also use
     \end{exampleblock}
     \end{column}
   \end{columns}
+  \begin{alertblock}{}
+    You can customize \texttt{itemize, enumerate, description} with the \texttt{enumitem} package.
+  \end{alertblock}
 \end{frame}
 
 \begin{frame}[fragile]{Description}
@@ -664,11 +671,11 @@ You may also use
   \caption{Not up to date numbers}
   \begin{tabular}{l r r}
     `\textcolor{hsr-mauve}{\textbackslash toprule}`
-    Country & Infected & Deaths \\
+    Country     & Infected & Deaths \\
     `\textcolor{hsr-mauve}{\textbackslash midrule}`
-    China       & 80'652 & 3'070 \\
-    South Korea &  7'041 &    44 \\
-    Italy       &  5'833 &   233 \\
+    China       &   80'652 & 3'070 \\
+    South Korea &    7'041 &    44 \\
+    Italy       &    5'833 &   233 \\
     `\textcolor{hsr-mauve}{\textbackslash bottomrule}`
   \end{tabular}
 \end{table}
@@ -723,37 +730,20 @@ Use prefixes such as \texttt{sec:, fig:, tab:, bib:, eqn:} to avoid mistakes.
 \end{frame}
 
 \begin{frame}[fragile]{Cross-References}
-% \begin{columns}
-% \begin{column}{.5\linewidth}
 \begin{lstlisting}
 \begin{figure} % or table
   \includegraphics{...}
   \caption{
     A stereographic projection.
-    \label{fig:stereographic-projection}
+    \label{fig:projection}
   }
 \end{figure}
 
-... as shown in figure \ref{fig:refl} ...
+... as shown in figure \ref{fig:projection} ...
 \end{lstlisting}
 \begin{alertblock}{}
-  \large Put the \lstinline{\label} inside of \lstinline{\caption}!
+  \large Put \lstinline{\label} inside of \lstinline{\caption}!
 \end{alertblock}
-% \end{column}
-% \begin{column}{.5\linewidth}
-% \begin{exampleblock}{Figure reference}
-% \begin{figure}[h]
-%   \newsavebox\reflfigbox%
-%   \begin{lrbox}{\reflfigbox}%
-%   \end{lrbox}
-%   \resizebox{\textwidth}{!}{\usebox\reflfigbox}%
-%   \caption{Reflection and refraction of electromagnetic waves.}
-%   \label{fig:refract}
-% \end{figure}
-% \ldots{} as shown in figure \ref{fig:refract} \ldots{}
-% \end{exampleblock}
-% \end{column}
-% \end{columns}
 \end{frame}
 
 \section{Mathematics}
@@ -857,7 +847,7 @@ With the packages \texttt{amsmath}, \texttt{amssymb}
 \[
   \mathbf{J} = \begin{pmatrix}
     0 & 1 \\
-    1 & 0 \\
+    1 & 0
   \end{pmatrix}
 \]
 \end{lstlisting}
@@ -865,12 +855,15 @@ With the packages \texttt{amsmath}, \texttt{amssymb}
 \[
   \mathbf{J} = \begin{pmatrix}
     0 & 1 \\
-    1 & 0 \\
+    1 & 0 
   \end{pmatrix}
   \hspace{1cm}    
   \mathbf{R}_\phi = e^{\phi\mathbf{J}}
 \]
 \end{exampleblock}
+\begin{alertblock}{}
+  There are also 
+\end{alertblock}
 \end{frame}
 
 \begin{frame}[fragile]{Equations}
@@ -895,8 +888,8 @@ i\hbar\, \partial_t \psi = - \frac{\hbar^2}{2m}\, \partial^2_x \psi + V\psi
 \begin{frame}[fragile]{Alignment}
 \begin{lstlisting}
 \begin{align*}
-  \nabla \mathbf{\cdot} \mathbf{F}(1,1)
-    &= \partial_x f + \partial_y f \\
+  \nabla \cdot \vec{F}(1,1)
+    &= \partial_x F_x + \partial_y F_y \\
     &= 2x + 3y^4 \\
     &= 2 + 3 \\
     &= 5
@@ -904,8 +897,8 @@ i\hbar\, \partial_t \psi = - \frac{\hbar^2}{2m}\, \partial^2_x \psi + V\psi
 \end{lstlisting}
 \begin{exampleblock}{}
 \begin{align*}
-  \nabla \mathbf{\cdot} \mathbf{F}(1,1)
-    &= \partial_x f + \partial_y f \\
+  \nabla \cdot \vec{F}(1,1)
+    &= \partial_x F_x + \partial_y F_y \\
     &= 2x + 3y^4 \\
     &= 2 + 3 \\
     &= 5
@@ -941,7 +934,7 @@ The industrial-technological society cannot be reformed in such a way as to prev
 \end{lstlisting}
 \vspace{3mm}
 \begin{lstlisting}[escapechar = ~]
-\begin{thebibliography}{99} % widest label
+\begin{thebibliography}{9} % widest label
   % manually set up MLA style
   \bibitem{unabomber} Kaczynski, Theodore.
     \textit{``Industrial Society and Its Future.''}
@@ -955,7 +948,7 @@ Put in the preamble:
 \begin{lstlisting}[]
 %% Citations
 \usepackage[
-  backend = biber, % or bibtex (older sw.)
+  backend = biber, % or bibtex (older)
   style = ieee, % or any other
 ]{biblatex}
 
@@ -964,7 +957,7 @@ Put in the preamble:
 and then
 \begin{lstlisting}[]
 \begin{document}
-% ...
+% use \cite{..} commands ...
 \printbibliography
 \end{document}
 \end{lstlisting}
@@ -986,18 +979,6 @@ and then
 \end{lstlisting}
 \end{frame}
 \begin{frame}[fragile]{BibTeX files (Example II)}
-\begin{lstlisting}[font=\footnotesize, language = BibTeX]
-@inproceedings{Tidal,
-  author    = {Macmillan, Alex and Marina, Mahesh K. and Triana, Jhair Tocancipa},
-  booktitle = {2010 INFOCOM IEEE Conference on Computer Communications Workshops},
-  title     = {Slow Frequency Hopping for Mitigating Tidal Fading on Rural Long Distance Over-Water Wireless Links},
-  year      = {2010},
-  pages     = {1-5},
-  doi       = {10.1109/INFCOMW.2010.5466612}
-}
-\end{lstlisting}
-\end{frame}
-\begin{frame}[fragile]{BibTeX files (Example III)}
 \begin{lstlisting}[font=\footnotesize, language = BibTeX]
 @book{Griffith,
   title     = {Introduction to Electrodynamics, Fourth Edition},
