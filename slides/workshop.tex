@@ -19,13 +19,15 @@
 \usepackage{booktabs}
 \usepackage{array}
 
+% links
+\usepackage{hyperref}
+\hypersetup{hidelinks = true, colorlinks = false,}
+
 % pretty drawings
 \usepackage{forest}
 \usepackage{circuitikz}
 \usepackage{tikz}
 \usetikzlibrary{%
-  calc, positioning,
-  decorations.pathmorphing
   calc,
   positioning,
   backgrounds,
@@ -85,11 +87,11 @@
 
 % metadata
 \title{\textrm{\LaTeXe} Workshop}
-\author[NaoPross]{\texttt{Naoki Pross -- np@0hm.ch}}
+\author[NaoPross]{\texttt{Naoki Pross --- np@0hm.ch}}
 \date{Fall Semester 2021}
 
 \institute[OST]{OST FHO Campus Rapperswil}
-%\logo{\includegraphics[width=3cm]{figs/hsr-logo}}
+% \logo{\includegraphics[width=3cm]{figs/hsr-logo}}
 
 \AtBeginSection[]
 {
@@ -101,7 +103,10 @@
 
 
 \begin{document}
-\maketitle
+
+\frame{
+  \maketitle
+}
 
 \begin{frame}{How do you write a document?}
 \begin{columns}
@@ -411,6 +416,8 @@ it is a new paragraph.
     \Large
     The Comprehensive \textrm{\TeX} Archive Network is a set of Internet sites around the world that offer \textrm{\TeX}-related material for download. 
   \end{block}
+  \Large
+  Wow, that doesn't mean anything. Just go to \url{https://ctan.org}
 \end{frame}
 
 \begin{frame}[fragile]{Typesetting (aka ``compilation'')}
@@ -581,6 +588,9 @@ Unnumbered sections:
 \subsection*{}
 \subsubsection*{} 
 \end{lstlisting}
+\begin{alertblock}{Pro Tip}
+  You can customize what these commands do with the \texttt{titling} package.
+\end{alertblock}
 \end{frame}
 
 
@@ -695,7 +705,7 @@ You may also use
 \begin{frame}[fragile]{Tables and tabular}
 \begin{lstlisting}
 \begin{table}`\textcolor{gray}{[h]}`
-  \caption{Not up to date numbers `\textcolor{gray}{\textbackslash label\{tab:covid\}}`
+  \caption{Not up to date numbers`\textcolor{gray}{\textbackslash label\{tab:covid\}}`}
   \begin{tabular}{l r r}
     `\textcolor{hsr-mauve}{\textbackslash toprule}`
     Country     & Infected & Deaths \\
@@ -801,7 +811,7 @@ Use prefixes such as \texttt{sec:, fig:, tab:, bib:, eqn:} to avoid mistakes.
 
 ... as shown in figure \ref{fig:projection} ...
 \end{lstlisting}
-\begin{alertblock}{}
+\begin{alertblock}{Pro Tip}
   \large Put \lstinline{\label} inside of \lstinline{\caption}!
 \end{alertblock}
 \end{frame}
@@ -900,6 +910,7 @@ Hats and underscores
     f(t) e^{-i\omega t} \mathrm{d}t
 \]
 \end{lstlisting}
+  Limits are similar with: \lstinline|\lim_{t\to a}|
 \begin{exampleblock}{}
 \[
   \sum_{k = 1}^{\infty} k = - \frac{1}{12}
@@ -1068,7 +1079,7 @@ and then
 \end{lstlisting}
 \end{frame}
 \begin{frame}[fragile]{BibTeX files: Example II}
-\begin{lstlisting}[font=\footnotesize, language = BibTeX]
+\begin{lstlisting}[language = BibTeX]
 @book{Griffith,
   title     = {Introduction to Electrodynamics, Fourth Edition},
   author    = {Griffiths, David J.},
@@ -1084,14 +1095,123 @@ and many more
 \end{frame}
 
 \section{Extras}
-\begin{frame}{Source code listings}
+\begin{frame}[fragile]{Source code listings I: Settings}
+This presentation uses:
+\begin{lstlisting}
+\usepackage{lstlistings}
+
+% define a style
+\lstdefinestyle{samplestyle}{
+  belowcaptionskip=\baselineskip,
+  breaklines=true,
+  frame=none,
+  inputencoding=utf8,
+  % margin
+  xleftmargin=\parindent,
+  % numbers
+  numbers=left,
+  numbersep=5pt,
+  numberstyle=\ttfamily\footnotesize\color{hsr-black40},
+\end{lstlisting}
+\end{frame}
+\begin{frame}[fragile]{Source code listings I: Settings (cont.)}
+\begin{lstlisting}[firstnumber = last, escapechar = ~]
+  % background
+  backgroundcolor=\color{hsr-lightgrey20},
+  % default language:
+  language=[LaTeX]TeX,
+  showstringspaces=false,
+  % font
+  basicstyle=\ttfamily\small,
+  identifierstyle=\color{hsr-black},
+  keywordstyle=\color{hsr-blue},
+  commentstyle=\color{hsr-black40},
+  stringstyle=\color{hsr-mauve80},
+}
+
+% use the style
+\lstset{style=samplestyle, escapechar=`}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Source code listings II: Usage}
+  Finally in your document:
+\begin{lstlisting}
+\begin{lstlisting}[
+  language = python,
+  caption = {
+    FIR filter in python. \label{lst:py-fir}
+  }]
+import numpy as np
+
+def tap(c, tau, f):
+    return np.exp(2j * np.pi * f * tau)
+
+f = np.logspace(5, 9, samples = 500)
+multipath = tap(.8, 500e-9, f) + tap(.4, 300e-9, f)
+\end{`lstlisting`}
+\end{lstlisting}
+\begin{alertblock}{}
+  \texttt{lstlistings} is pretty good, but there is also \texttt{minted} as
+  alternative. \texttt{minted} requires python to be installed.
+\end{alertblock}
+\end{frame}
+
+\begin{frame}[fragile]{Source code listings II: Usage (cont.)}
+\begin{exampleblock}{}
+\begin{lstlisting}[
+  language = python,
+  caption = {FIR filter in python.
+    \label{lst:py-fir}}]
+import numpy as np
+
+def tap(c, tau, f):
+    return np.exp(2j * np.pi * f * tau)
+
+f = np.logspace(5, 9, samples = 500)
+multipath = tap(.8, 500e-9, f) + tap(.4, 300e-9, f)
+\end{lstlisting}
+\end{exampleblock}
+\end{frame}
+
+\begin{frame}{TikZ}
 \end{frame}
 
 \begin{frame}{Plots}
 \end{frame}
 
-\begin{frame}{TikZ}
+\begin{frame}{Makefiles (yes)}
 \end{frame}
+
+\begin{frame}{Using it practice / Real examples}
+  \begin{itemize}
+      \item See README file in this workshop's repository
+        \href{https://github.com/openhsr/LaTeX-Workshop}{\ttfamily github.com/OpenHSR/LaTeX-Workshop}
+      \item Documents I wrote in \textrm{\LaTeX}
+        \begin{itemize}
+          \item \href{https://github.com/HSR-Stud/VorlageZF}{\ttfamily github.com/HSR-Stud/VorlageZF}
+          \item \href{https://github.com/NaoPross/DigDes}{\ttfamily github.com/NaoPross/DigDes}
+          \item \href{https://github.com/NaoPross/FuVar}{\ttfamily github.com/NaoPross/FuVar}
+          \item \href{https://git.thearcway.org/naopross/hsr/}{\ttfamily git.thearcway.org/naopross/hsr}
+        \end{itemize}
+      \item My semester thesis (see under \texttt{doc/thesis})
+        \href{https://github.com/NaoPross/Fading}{\ttfamily github.com/NaoPross/Fading}
+      \item Books Prof. Dr. M\"uller wrote
+        \begin{itemize}
+          \item \href{https://github.com/AndreasFMueller/SeminarMatrizen}{\ttfamily github.com/AndreasFMueller/SeminarMatrizen}
+          \item \href{https://github.com/AndreasFMueller/SeminarNumerik}{\ttfamily github.com/AndreasFMueller/SeminarNumerik}
+        \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\frame{
+  \centering
+  \resizebox{!}{30pt}{
+    {\Huge \bfseries\scshape The End}
+  }
+  \newline
+  {It was a lot, I know.}
+}
 
 \end{document}
 
