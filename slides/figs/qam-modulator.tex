@@ -1,0 +1,92 @@
+% vim: set ts=2 sw=2 noet:
+
+\begin{circuitikz}[
+	]
+	\matrix [
+		row sep = 5mm, column sep = 7mm,
+		nodes = {
+			align = center,
+			fill = white,
+		},
+	] {
+		& \coordinate (vmi);
+			& \node[twoportshape] (B2Li) {};
+			&
+			& \coordinate (mi);
+			&
+			& \node[mixer] (Mi) {};
+			& \coordinate (si);
+			\\
+		\node[] (M) {\(m(n)\)};
+			& \node[twoportshape] (BSp) {};
+			&
+			&
+			& \node[twoportshape] (H) {};
+			& \node[oscillator] (OSC) {};
+			& \coordinate (phii);
+			& \node[adder] (SUM) {};
+			& \node (S) {\(s(t)\)};
+			\\
+		&&&& \coordinate (phiq);
+			\\[-3mm]
+		& \coordinate (vmq);
+			& \node[twoportshape] (B2Lq) {};
+			& \coordinate (mq);
+			& \node[mixer] (Mq) {};
+			&
+			&
+			& \coordinate (sq);
+			\\
+	};
+
+	% Add missing lables
+	\node at (H.center) {\large \(\mathcal{H}\)};
+	\node at (B2Li.center) {\textsf{B2L}};
+	\node at (B2Lq.center) {\textsf{B2L}};
+	\node at (BSp) {\textsf{BSp}};
+
+	% Add connections
+	\begin{scope}[thick, -latex]
+		\draw (M) -- (BSp.west);
+
+		\draw (BSp.north) |- (B2Li.west);
+		\draw (B2Li.east) -- (Mi.west);
+		\draw (Mi.east) -| (SUM.north);
+
+		\draw (BSp.south) |- (B2Lq.west);
+		\draw (B2Lq.east) -- (Mq.west);
+		\draw (Mq.east) -| (SUM.south);
+
+		\draw (SUM.east) -- (S);
+
+		\draw (OSC.east) -| (Mi.south);
+		\draw (OSC.west) -- (H.east);
+		\draw (H.south) -- (Mq.north);
+	\end{scope}
+
+	% Add signal labels
+	\node[above right] at (vmi) {\(\vec{m}_i\)};
+	\node[below right] at (vmq) {\(\vec{m}_q\)};
+
+	\node[above] at (mi) {\(m_i(t)\)};
+	\node[below] at (mq) {\(m_q(t)\)};
+
+	\node[above right] at (phii) {\(\phi_i\)};
+	\node[right, yshift = 1mm] at (phiq) {\(\phi_q\)};
+
+	\node[above left] at (si) {\(s_i(t)\)};
+	\node[below left] at (sq) {\(s_q(t)\)};
+
+	% Background elements
+	\begin{pgfonlayer}{background}
+		\fill[left color = white, right color = blue!20, draw = white]
+			($(B2Li.north) + (0,1.1)$) coordinate (D) rectangle ($(B2Lq.south) - (3,1)$);
+		\fill[right color = white, left color = red!20, draw = white]
+			($(B2Li.north) + (0,1.1)$) coordinate (A) rectangle ($(B2Lq.south) + (9,-1)$);
+
+		\node[blue!50, anchor = south east, font = \ttfamily\bfseries, xshift = -4mm]
+			at (D) {\bfseries\ttfamily Digital bits};
+		\node[red!50, anchor = south west, font = \bfseries\ttfamily, xshift = 4mm]
+			at (A) {Analog waveform};
+	\end{pgfonlayer}
+\end{circuitikz}

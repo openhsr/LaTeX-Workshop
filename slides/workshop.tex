@@ -9,9 +9,10 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 
-% use plex font serif
+% use plex font for monospaced, roboto for the rest
 \usepackage[T1]{fontenc}
-\usepackage{plex-otf}
+\usepackage{plex-otf} % monospaced
+\usepackage{roboto} % other
 \renewcommand*\familydefault{\sfdefault}
 
 \usepackage{graphicx}
@@ -20,11 +21,18 @@
 
 % pretty drawings
 \usepackage{forest}
+\usepackage{circuitikz}
 \usepackage{tikz}
 \usetikzlibrary{%
   calc, positioning,
-  decorations.pathreplacing,%
-  decorations.pathmorphing%
+  decorations.pathmorphing
+  calc,
+  positioning,
+  backgrounds,
+  decorations.pathreplacing,
+  decorations.markings,
+  matrix,
+  arrows,
 }
 
 \usepackage{pgfplots}
@@ -93,9 +101,7 @@
 
 
 \begin{document}
-\begin{frame}
 \maketitle
-\end{frame}
 
 \begin{frame}{How do you write a document?}
 \begin{columns}
@@ -559,6 +565,22 @@ it is a new paragraph.
 
 \section{Basics}
 \begin{frame}[fragile]{Headings}
+Numbered sections:
+\begin{lstlisting}
+\part{}
+\chapter{}
+\section{}
+\subsection{}
+\subsubsection{} 
+\paragraph{}
+\subparagraph{}
+\end{lstlisting}
+Unnumbered sections:
+\begin{lstlisting}
+\section*{}
+\subsection*{}
+\subsubsection*{} 
+\end{lstlisting}
 \end{frame}
 
 
@@ -566,12 +588,13 @@ it is a new paragraph.
 \begin{lstlisting}
 This is \emph{emphatized}.
 You may, but should not, also use
-\textbf{Bold},
-\textit{Italic},
-\textsf{Sans-Serif},
-\textsc{SmallCaps},
-\textrm{Roman},      % with serif
-\texttt{Typewriter}. % monospaced
+\textbf{Bold},        % \bfseries
+\textit{Italic},      % \itshape
+\textsc{SmallCaps},   % \scshape
+\textsl{Slanted},     % \slshape
+\textsf{Sans-Serif},  % \sffamily
+\textrm{Roman},       % \rmfamily
+\texttt{Typewriter}.  % \ttfamily
 \end{lstlisting}
 
 \begin{exampleblock}{}
@@ -579,9 +602,10 @@ This is \emph{emphatized}.
 You may also use
 \textbf{Bold},
 \textit{Italic},
+\textsc{SmallCaps},
+\textsl{Slanted},
 \textsf{Sans-Serif},
-\textsc{SmallCaps}\footnote{The font used in this presentation does not have smallcaps shapes},
-\textrm{Roman} or
+\textrm{Roman},
 \texttt{Typewriter}.
 \end{exampleblock}
 \end{frame}
@@ -663,12 +687,15 @@ You may also use
     \bottomrule
   \end{tabular}
 \end{table}
+\begin{alertblock}{Pro tip}
+  The algorithm is very good, it's better not give a specifier at all.
+\end{alertblock}
 \end{frame}
 
 \begin{frame}[fragile]{Tables and tabular}
 \begin{lstlisting}
-\begin{table}[h]
-  \caption{Not up to date numbers}
+\begin{table}`\textcolor{gray}{[h]}`
+  \caption{Not up to date numbers `\textcolor{gray}{\textbackslash label\{tab:covid\}}`
   \begin{tabular}{l r r}
     `\textcolor{hsr-mauve}{\textbackslash toprule}`
     Country     & Infected & Deaths \\
@@ -704,10 +731,42 @@ You may also use
 \end{frame}
 
 
-\begin{frame}{Figures}
+\begin{frame}[fragile]{Figures}
+\begin{lstlisting}[escapechar = `]
+\begin{figure}`\textcolor{gray}{[h]}`
+  % center stuff
+  \centering
+
+  % to include a picture, use eps, pdf, dvi
+  % preamble: \usepackage{graphicx}
+  \includegraphics[width = 5cm]{path/to/picture}
+  % or if you have some TikZ code
+  \input{path/to/tikz/code}
+
+  \caption{
+    A meaningful caption for my picture.
+    `\textcolor{gray}{\textbackslash label\{fig:meaningful-name\}}`
+  }
+\end{figure}
+\end{lstlisting}
 \end{frame}
 
-\begin{frame}[fragile]{Cross-References}
+\begin{frame}[fragile]{Figures}
+\begin{figure}
+  % center stuff
+  \centering
+
+  \resizebox{\linewidth}{!}{
+    \input{figs/qam-modulator}
+  }
+
+  \caption{
+    Block diagram of a QAM Modulator.
+  }
+\end{figure}
+\end{frame}
+
+\begin{frame}[fragile]{Cross-References I: Parts of text}
 \begin{lstlisting}
 \section{Introduction} 
 ... will be discussed in \S \ref{sec:nvstokes} ...
@@ -716,6 +775,7 @@ You may also use
 \end{lstlisting}
 
 \begin{exampleblock}{Document}
+% I cheated here, don't ever use \textbf{} and such like this in your documents EVER
 \textbf{1\; Introduction} \\[.2em]
 \ldots{} will be discussed in \S 4 \ldots{}
 \\[1em]
@@ -729,7 +789,7 @@ Use prefixes such as \texttt{sec:, fig:, tab:, bib:, eqn:} to avoid mistakes.
 \end{alertblock}
 \end{frame}
 
-\begin{frame}[fragile]{Cross-References}
+\begin{frame}[fragile]{Cross-References II: Floatings}
 \begin{lstlisting}
 \begin{figure} % or table
   \includegraphics{...}
@@ -755,6 +815,10 @@ Use prefixes such as \texttt{sec:, fig:, tab:, bib:, eqn:} to avoid mistakes.
       \midrule
       math & \textbackslash ( \ldots{} \textbackslash ) & \textcolor{hsr-lightgrey}{\$ \ldots{} \$} \\
        displaymath & \textbackslash [ \ldots{} \textbackslash ] & \textcolor{hsr-lightgrey}{\$\$ \ldots{} \$\$} \\
+       \midrule
+       equation & -- & -- \\
+       align & -- & -- \\
+       gather & -- & -- \\
        \bottomrule
     \end{tabular}
   \end{table}
@@ -762,39 +826,41 @@ Use prefixes such as \texttt{sec:, fig:, tab:, bib:, eqn:} to avoid mistakes.
 
 \begin{frame}[fragile]{Example}
 \begin{lstlisting}
-The Pythagoran Theorem states that for a right trangle with sides `\textcolor{hsr-blue}{\textbackslash(a,b,c\textbackslash)}` there is the relation
+The Pythagoran Theorem states that for a right trangle with sides `\textcolor{hsr-blue}{\textbackslash(a,b,c\textbackslash)}` there is the relation:
 \[
-    c^2 = a^2 + b^2
+    c^2 = a^2 + b^2.
 \]
 \end{lstlisting}
 
 \begin{exampleblock}{}
-The Pythagoran Theorem states that for a right trangle with sides \(a, b, c\) there is the relation
+The Pythagoran Theorem states that for a right trangle with sides \(a, b, c\) there is the relation:
 \[
-    c^2 = a^2 + b^2
+    c^2 = a^2 + b^2.
 \] 
 \end{exampleblock}
 \end{frame}
 
-\begin{frame}{Spacing and text in math mode}
-\end{frame}
+% \begin{frame}{Spacing and text in math mode}
+% \end{frame}
 
 \begin{frame}[fragile]{Math styles}
 With the packages \texttt{amsmath}, \texttt{amssymb}
 \begin{lstlisting}
 \[
-  \mathrm{R}   \quad % roman
-  \mathit{R}   \quad % italic
-  \mathbf{R}   \quad % bold
-  \mathsf{R}   \quad % sans-serif
-  \mathtt{R}   \quad % typewriter
-  \mathbb{R}   \quad % blackboard bold
-  \mathcal{R}  \quad % calligraphy
-  \mathfrak{R}       % fraktur
+  \text{normal} % normal text
+  \mathrm{R}    % roman
+  \mathit{R}    % italic
+  \mathbf{R}    % bold
+  \mathsf{R}    % sans-serif
+  \mathtt{R}    % typewriter
+  \mathbb{R}    % blackboard bold
+  \mathcal{R}   % calligraphy
+  \mathfrak{R}  % fraktur
 \]
 \end{lstlisting}
 \begin{exampleblock}{}
 \LARGE \(
+  \text{normal} \quad
   \mathrm{R}   \quad
   \mathit{R}   \quad
   \mathbf{R}   \quad
@@ -807,7 +873,8 @@ With the packages \texttt{amsmath}, \texttt{amssymb}
 \end{exampleblock}
 \end{frame}
 
-\begin{frame}[fragile]{Sub. and Superscript}
+\begin{frame}[fragile]{Sub-- and Superscript}
+Hats and underscores
 \begin{lstlisting}
 \[
   c = \sqrt{a^2 + b^2 - 2ab \cos( \alpha_{ab} )}
@@ -842,7 +909,7 @@ With the packages \texttt{amsmath}, \texttt{amssymb}
 \end{exampleblock}
 \end{frame}
 
-\begin{frame}[fragile]{Matrices}
+\begin{frame}[fragile]{Matrices with \texttt{amsmath}}
 \begin{lstlisting}
 \[
   \mathbf{J} = \begin{pmatrix}
@@ -862,11 +929,11 @@ With the packages \texttt{amsmath}, \texttt{amssymb}
 \]
 \end{exampleblock}
 \begin{alertblock}{}
-  There are also 
+  There are also \texttt{bmatrix, vmatrix, Bmatrix, Vmatrix}.
 \end{alertblock}
 \end{frame}
 
-\begin{frame}[fragile]{Equations}
+\begin{frame}[fragile]{Cross-References III: Equations}
 \begin{lstlisting}
 Equation \eqref{eqn:schroedinger} is the Schrödinger Equation that describes the evolution of a quantum state \(\psi\).
 
@@ -887,7 +954,7 @@ i\hbar\, \partial_t \psi = - \frac{\hbar^2}{2m}\, \partial^2_x \psi + V\psi
 
 \begin{frame}[fragile]{Alignment}
 \begin{lstlisting}
-\begin{align*}
+\begin{align*} % numbered when without * 
   \nabla \cdot \vec{F}(1,1)
     &= \partial_x F_x + \partial_y F_y \\
     &= 2x + 3y^4 \\
@@ -906,6 +973,28 @@ i\hbar\, \partial_t \psi = - \frac{\hbar^2}{2m}\, \partial^2_x \psi + V\psi
 \end{exampleblock}
 \end{frame}
 
+\begin{frame}[fragile]{Subequations}
+\begin{lstlisting}
+Maxwell's equations in their integral form are:
+\begin{subequations}
+  \begin{align}
+    \oint_{\partial S} \mathbf{E} ...
+  \end{align}
+\end{subequations}
+\end{lstlisting}
+Maxwell's equations in their integral form are:
+\begin{subequations}
+  \begin{align}
+    \oint_{\partial S} \mathbf{E} \cdot d\mathbf{l} &= -\frac{d}{dt} \int_S \mathbf{B} \cdot d\mathbf{s}, \\
+    \oint_{\partial S} \mathbf{H} \cdot d\mathbf{l} &= \int_S \left(
+      \mathbf{J} + \partial_t \mathbf{D}
+    \right) \cdot d\mathbf{s}, \\
+    \oint_{\partial V} \mathbf{D} \cdot d\mathbf{s} &= \int_V \rho \,dv, \\
+    \oint_{\partial V} \mathbf{B} \cdot d\mathbf{s} &= 0.
+  \end{align}
+\end{subequations}
+\end{frame}
+
 \begin{frame}{Learn by doing: try to typeset these}
 \centering
 \scalebox{1.8}{%
@@ -913,7 +1002,7 @@ i\hbar\, \partial_t \psi = - \frac{\hbar^2}{2m}\, \partial^2_x \psi + V\psi
 \begin{align*}
   x_{t+1} &= kx_t (1 - x_t) \\[1.2em]
   H &= - \sum_{x \in \mathbb{X}} p(x) \log p(x) \\[1em]
-  \mathcal{L}^{-1}[F] &= 
+  \mathcal{L}^{-1}\{F\} &= 
     \lim_{T \to \infty}
     \frac{1}{2\pi i}
     \int\limits_{\gamma - iT}^{\gamma + iT}
@@ -963,8 +1052,8 @@ and then
 \end{lstlisting}
 \end{frame}
 
-\begin{frame}[fragile]{BibTeX files (Example I)}
-\begin{lstlisting}[font=\footnotesize, language = BibTeX]
+\begin{frame}[fragile]{BibTeX files: Example I}
+\begin{lstlisting}[language = BibTeX]
 @article{Alimohammad2009,
   title     = {Compact Rayleigh and Rician fading simulator based on random walk processes},
   author    = {Alimohammad, A. and Fard, S.F. and Cockburn, B.F. and Schlegel, C.},
@@ -978,7 +1067,7 @@ and then
 }
 \end{lstlisting}
 \end{frame}
-\begin{frame}[fragile]{BibTeX files (Example II)}
+\begin{frame}[fragile]{BibTeX files: Example II}
 \begin{lstlisting}[font=\footnotesize, language = BibTeX]
 @book{Griffith,
   title     = {Introduction to Electrodynamics, Fourth Edition},
