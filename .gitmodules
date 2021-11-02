@@ -1,0 +1,6 @@
+[submodule "templates/VorlageZF"]
+	path = templates/VorlageZF
+	url = https://github.com/HSR-Stud/VorlageZF.git
+[submodule "templates/TexTemplates"]
+	path = templates/TexTemplates
+	url = https://github.com/NaoPross/TexTemplates.git
