@@ -2,6 +2,7 @@
 
 templates/build
 samples/build
+/tags
 
 # Created by https://www.gitignore.io/api/tex,linux,macos,windows
 # Edit at https://www.gitignore.io/?templates=tex,linux,macos,windows
