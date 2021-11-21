@@ -50,10 +50,6 @@
   inputencoding=utf8,
   % margin
   xleftmargin=\parindent,
-  % numbers
-  numbers=left,
-  numbersep=5pt,
-  numberstyle=\ttfamily\footnotesize\color{hsr-black40},
   % background
   backgroundcolor=\color{hsr-lightgrey20},
   % default language:
@@ -589,7 +585,7 @@ Unnumbered sections:
 \subsubsection*{} 
 \end{lstlisting}
 \begin{alertblock}{Pro Tip}
-  You can customize what these commands do with the \texttt{titling} package.
+  You can customize what these commands do with the \texttt{titlesec} package.
 \end{alertblock}
 \end{frame}
 
@@ -776,29 +772,6 @@ You may also use
 \end{figure}
 \end{frame}
 
-\begin{frame}[fragile]{Cross-References I: Parts of text}
-\begin{lstlisting}
-\section{Introduction} 
-... will be discussed in \S \ref{sec:nvstokes} ...
-
-\section{Stokes equation} \label{sec:nvstokes}
-\end{lstlisting}
-
-\begin{exampleblock}{Document}
-% I cheated here, don't ever use \textbf{} and such like this in your documents EVER
-\textbf{1\; Introduction} \\[.2em]
-\ldots{} will be discussed in \S 4 \ldots{}
-\\[1em]
-
-\textbf{4\; Stokes Equation} \\[.2em]
-\ldots{}
-\end{exampleblock}
-
-\begin{alertblock}{Pro Tip}
-Use prefixes such as \texttt{sec:, fig:, tab:, bib:, eqn:} to avoid mistakes.
-\end{alertblock}
-\end{frame}
-
 \begin{frame}[fragile]{Cross-References II: Floatings}
 \begin{lstlisting}
 \begin{figure} % or table
@@ -813,6 +786,29 @@ Use prefixes such as \texttt{sec:, fig:, tab:, bib:, eqn:} to avoid mistakes.
 \end{lstlisting}
 \begin{alertblock}{Pro Tip}
   \large Put \lstinline{\label} inside of \lstinline{\caption}!
+\end{alertblock}
+\end{frame}
+
+\begin{frame}[fragile]{Cross-References II: Parts of text}
+\begin{lstlisting}
+\section{Introduction} 
+... will be discussed in \S \ref{sec:vstokes} ...
+
+\section{Stokes equation} \label{sec:vstokes}
+\end{lstlisting}
+
+\begin{exampleblock}{Document}
+% I cheated here, don't ever use \textbf{} and such like this in your documents EVER
+\textbf{1\; Introduction} \\[.2em]
+\ldots{} will be discussed in \S 4 \ldots{}
+\\[1em]
+
+\textbf{4\; Stokes Equation} \\[.2em]
+\ldots{}
+\end{exampleblock}
+
+\begin{alertblock}{Pro Tip}
+Use prefixes such as \texttt{sec:, fig:, tab:, bib:, eqn:} to avoid mistakes.
 \end{alertblock}
 \end{frame}
 
@@ -1066,26 +1062,26 @@ and then
 \begin{frame}[fragile]{BibTeX files: Example I}
 \begin{lstlisting}[language = BibTeX]
 @article{Alimohammad2009,
-  title     = {Compact Rayleigh and Rician fading simulator based on random walk processes},
-  author    = {Alimohammad, A. and Fard, S.F. and Cockburn, B.F. and Schlegel, C.},
-  journal   = {IET Commun.},
+  title = {Compact Rayleigh and Rician fading simulator based on random walk processes},
+  author = {Alimohammad, A. and Fard, S.F. and Cockburn, B.F. and Schlegel, C.},
+  journal = {IET Commun.},
   publisher = {Institution of Engineering and Technology (IET)},
-  volume    = {3},
-  number    = {8},
-  pages     = {1333},
-  year      = {2009},
-  language  = {en}
+  volume = {3},
+  number = {8},
+  pages = {1333},
+  year = {2009},
+  language = {en}
 }
 \end{lstlisting}
 \end{frame}
 \begin{frame}[fragile]{BibTeX files: Example II}
 \begin{lstlisting}[language = BibTeX]
 @book{Griffith,
-  title     = {Introduction to Electrodynamics, Fourth Edition},
-  author    = {Griffiths, David J.},
-  year      = {2017},
+  title = {Introduction to Electrodynamics, Fourth Edition},
+  author = {Griffiths, David J.},
+  year = {2017},
   publisher = {Cambridge University Press; 4th edition},
-  isbn      = {978-1108420419}
+  isbn = {978-1108420419}
 }
 \end{lstlisting}
 and many more
@@ -1097,7 +1093,7 @@ and many more
 \section{Extras}
 \begin{frame}[fragile]{Source code listings I: Settings}
 This presentation uses:
-\begin{lstlisting}
+\begin{lstlisting}[escapechar=~]
 \usepackage{lstlistings}
 
 % define a style
@@ -1111,22 +1107,7 @@ This presentation uses:
   % numbers
   numbers=left,
   numbersep=5pt,
-  numberstyle=\ttfamily\footnotesize\color{hsr-black40},
-\end{lstlisting}
-\end{frame}
-\begin{frame}[fragile]{Source code listings I: Settings (cont.)}
-\begin{lstlisting}[firstnumber = last, escapechar = ~]
-  % background
-  backgroundcolor=\color{hsr-lightgrey20},
-  % default language:
-  language=[LaTeX]TeX,
-  showstringspaces=false,
-  % font
-  basicstyle=\ttfamily\small,
-  identifierstyle=\color{hsr-black},
-  keywordstyle=\color{hsr-blue},
-  commentstyle=\color{hsr-black40},
-  stringstyle=\color{hsr-mauve80},
+  ...
 }
 
 % use the style
@@ -1140,8 +1121,9 @@ This presentation uses:
 \begin{lstlisting}[
   language = python,
   caption = {
-    FIR filter in python. \label{lst:py-fir}
-  }]
+    FIR filter in python.
+  },
+  label = {lst:py-fir}]
 import numpy as np
 
 def tap(c, tau, f):
@@ -1161,29 +1143,228 @@ multipath = tap(.8, 500e-9, f) + tap(.4, 300e-9, f)
 \begin{exampleblock}{}
 \begin{lstlisting}[
   language = python,
-  caption = {FIR filter in python.
-    \label{lst:py-fir}}]
+  caption = {
+    FIR filter in python.
+  },
+  label = {lst:py-fir}]
 import numpy as np
 
 def tap(c, tau, f):
     return np.exp(2j * np.pi * f * tau)
 
-f = np.logspace(5, 9, samples = 500)
+f = np.logspace(5, 9, samples=500)
 multipath = tap(.8, 500e-9, f) + tap(.4, 300e-9, f)
 \end{lstlisting}
 \end{exampleblock}
 \end{frame}
 
-\begin{frame}{TikZ}
+\begin{frame}[fragile]{TikZ I: What is TikZ}
+
+{\Large\bfseries TikZ = TikZ ist kein Zeichenprogramm}
+\begin{lstlisting}
+\usepackage{tikz}
+\usetikzlibrary{calc, positioning, ...}
+\end{lstlisting}
+\begin{lstlisting}
+\begin{figure}
+  \centering
+  \begin{tikzpicture}[
+      % global settings / styles
+    ]
+
+    % drawing commands
+
+  \end{tikzpicture}
+  \caption{... \label{fig:...}}
+\end{figure}
+\end{lstlisting}
 \end{frame}
 
-\begin{frame}{Plots}
+\begin{frame}[fragile]{TikZ II: Elements}
+
+  {\bfseries Basics}
+  \begin{itemize}
+    \item \lstinline!\coordinate (name)  at (x,y);!
+    \item \lstinline!\node[options] (name)  at (x,y)  {label};!
+    \item \lstinline!\draw[options] commands;!
+    \item \lstinline!\fill[options] commands;!
+  \end{itemize}
+
+  {\bfseries Drawing commands}
+  \begin{itemize}
+    \item Line \lstinline!(A)  -- (B)!
+    \item Horiz. then vert. line \lstinline!(A)  -| (B)!
+    \item Vert. then horiz. line \lstinline!(A)  |- (B)!
+    \item Quadratic B\'ezier \lstinline!(A) ..  controls (P)  and (Q)  .. (B)!
+    \item Advanced curve \lstinline!(A)  to[options] (B)!
+    \item Nodes \lstinline!node[options] (name) {label}!
+    \item Shapes \lstinline!(A) rectangle (B)!, \lstinline!(A) circle (2cm)!
+  \end{itemize}
 \end{frame}
 
-\begin{frame}{Makefiles (yes)}
+\begin{frame}[fragile]{TikZ III: Basic example}
+  \begin{columns}
+    \begin{column}{.75\linewidth}
+      \begin{lstlisting}
+\begin{tikzpicture}
+  \coordinate (O) at (0,0);
+  \coordinate (A) at (2cm,18mm);
+  % no units = cm
+
+  \draw[thick] (O) -- (A);
+  \draw[thick, dotted, blue] 
+    (O) -| (A);
+
+  \draw[ultra thick, ->, gray]
+    (O) -- ++(5mm, -5mm);
+
+  \fill[thick, draw = black,
+    fill = red!40] (O) circle (2mm);
+
+  \node[above] at (A) {\(P_2\)};
+\end{tikzpicture}
+      \end{lstlisting}
+    \end{column}
+    \begin{column}{.25\linewidth}
+      \centering
+      \begin{tikzpicture}
+        \coordinate (O) at (0,0);
+        \coordinate (A) at (2cm,18mm);
+        % no units = cm
+
+        \draw[thick] (O) -- (A);
+        \draw[thick, dotted, blue] 
+          (O) -| (A);
+
+        \draw[ultra thick, gray, ->]
+          (O) -- ++(5mm, -5mm);
+
+        \fill[thick, draw=black,
+          fill=red!40] (O) circle (2mm);
+
+        \node[above] at (A) {\(P_2\)};
+      \end{tikzpicture}
+    \end{column}
+  \end{columns}
 \end{frame}
 
-\begin{frame}{Using it practice / Real examples}
+\begin{frame}[fragile]{TikZ IV: Example with nodes}
+  \begin{columns}
+    \begin{column}{.8\linewidth}
+      \begin{lstlisting}
+\node (A) at (0,0) {A node};
+
+\node[
+  rectangle, very thick,
+  draw = black, fill = green!20,
+  font = \bfseries\slshape,
+  % positioning library
+  below = 5mm of A,
+] (B) {Boxed};
+
+\node[
+  circle, thick,
+  draw = black, fill = magenta!20,
+  below = 1cm of B,
+] (C) {\(m\)};
+
+\draw[very thick, gray, ->]
+  (C.east) to[bend right] (B.south east);
+      \end{lstlisting}
+    \end{column}
+    \begin{column}{.2\linewidth}
+      \centering
+      \begin{tikzpicture}
+        \node (A) at (0,0) {A node};
+
+        \node[
+          rectangle, very thick,
+          draw = black, fill = green!20,
+          font = \bfseries\slshape,
+          below = 5mm of A,
+        ] (B) {Boxed};
+
+        \node[
+          circle, thick,
+          draw = black, fill = magenta!30,
+          below = 1cm of B,
+        ] (C) {\(m\)};
+
+        \draw[very thick, gray, ->]
+          (C.east) to[bend right] (B.south east);
+      \end{tikzpicture}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{TikZ V: Matrix and scope}
+  \begin{columns}
+    \begin{column}{.8\linewidth}
+      \begin{lstlisting}
+\matrix (M) [ % node with table of nodes
+  row sep = 8mm,
+  column sep = 4mm,
+  nodes = {
+    circle, thick,
+    draw = black,
+    fill = magenta!30,
+    outer sep = 1mm,
+  },
+]{
+  \node (A) {A}; & \node (B) {B}; \\
+  \node (X) {X}; \\
+};
+
+\begin{scope}[ultra thick, gray, ->]
+  \draw (X) -- (A);
+  \draw (X) to[out = 0, in = -90] (B);
+\end{scope}
+      \end{lstlisting}
+    \end{column}
+    \begin{column}{.2\linewidth}
+      \centering
+      \begin{tikzpicture}
+        \matrix (M) [
+          row sep = 8mm,
+          column sep = 4mm,
+          nodes = {
+            circle, thick,
+            draw = black,
+            fill = magenta!30,
+            outer sep = 1mm,
+          },
+        ]{
+          \node (A) {A}; & \node (B) {B}; \\
+          \node (X) {X}; &               \\
+        };
+
+        \begin{scope}[ultra thick, gray, ->]
+          \draw (X) -- (A);
+          \draw (X) to[out = 0, in = -90] (B);
+        \end{scope}
+      \end{tikzpicture}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% \begin{frame}[fragile]{TikZ}
+%   \begin{columns}
+%     \begin{column}{.7\linewidth}
+%       \begin{lstlisting}
+%       \end{lstlisting}
+%     \end{column}
+%     \begin{column}{.3\linewidth}
+%       \centering
+%       \begin{tikzpicture}
+%       \end{tikzpicture}
+%     \end{column}
+%   \end{columns}
+% \end{frame}
+
+\begin{frame}{PGFPlots}
+\end{frame}
+
+\begin{frame}{Real examples}
   \begin{itemize}
       \item See README file in this workshop's repository
         \href{https://github.com/openhsr/LaTeX-Workshop}{\ttfamily github.com/OpenHSR/LaTeX-Workshop}
@@ -1201,6 +1382,8 @@ multipath = tap(.8, 500e-9, f) + tap(.4, 300e-9, f)
           \item \href{https://github.com/AndreasFMueller/SeminarMatrizen}{\ttfamily github.com/AndreasFMueller/SeminarMatrizen}
           \item \href{https://github.com/AndreasFMueller/SeminarNumerik}{\ttfamily github.com/AndreasFMueller/SeminarNumerik}
         \end{itemize}
+      \item Another real book
+        \href{https://github.com/hmemcpy/milewski-ctfp-pdf}{\ttfamily github.com/hmemcpy/milewski-ctfp-pdf}
   \end{itemize}
 \end{frame}
 
