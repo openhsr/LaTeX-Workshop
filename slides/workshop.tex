@@ -284,11 +284,11 @@ Things in red boxes are tips or extras
 \begin{exampleblock}{}
 \Large
 \begin{verbatim}
-\documentclass[a4paper]{article}
+\documentclass{article}
 
 \LaTeX{}
 
-\newpage
+\usepackage[a4paper]{geometry}
 \end{verbatim}
 \end{exampleblock}
 \end{frame}
@@ -772,7 +772,7 @@ You may also use
 \end{figure}
 \end{frame}
 
-\begin{frame}[fragile]{Cross-References II: Floatings}
+\begin{frame}[fragile]{Cross-References I: Floatings}
 \begin{lstlisting}
 \begin{figure} % or table
   \includegraphics{...}
@@ -1062,10 +1062,10 @@ and then
 \begin{frame}[fragile]{BibTeX files: Example I}
 \begin{lstlisting}[language = BibTeX]
 @article{Alimohammad2009,
-  title = {Compact Rayleigh and Rician fading simulator based on random walk processes},
-  author = {Alimohammad, A. and Fard, S.F. and Cockburn, B.F. and Schlegel, C.},
+  title = {Compact Rayleigh and Rician fading ..},
+  author = {Alimohammad, A. and Fard, ...},
   journal = {IET Commun.},
-  publisher = {Institution of Engineering and Technology (IET)},
+  publisher = {Institution of Engineering and ...},
   volume = {3},
   number = {8},
   pages = {1333},
@@ -1077,10 +1077,10 @@ and then
 \begin{frame}[fragile]{BibTeX files: Example II}
 \begin{lstlisting}[language = BibTeX]
 @book{Griffith,
-  title = {Introduction to Electrodynamics, Fourth Edition},
+  title = {Introduction to Electrodynamics ...},
   author = {Griffiths, David J.},
   year = {2017},
-  publisher = {Cambridge University Press; 4th edition},
+  publisher = {Cambridge University Press; ...},
   isbn = {978-1108420419}
 }
 \end{lstlisting}
