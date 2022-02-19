@@ -21,7 +21,19 @@
 
 % links
 \usepackage{hyperref}
-\hypersetup{hidelinks = true, colorlinks = false,}
+\hypersetup{
+  % Remove ugly boxes
+  hidelinks,
+  % Set colors
+  colorlinks = true,
+  anchorcolor = black,
+  citecolor = black,
+  filecolor = black,
+  linkcolor = black,
+  menucolor = black,
+  runcolor = black,
+  urlcolor = {black!50!blue}, 
+}
 
 % pretty drawings
 \usepackage{forest}
@@ -139,29 +151,29 @@
 \begin{frame}{Goals for today}
   \Large
   \begin{itemize}
-    \item Organize your \textrm{\LaTeXe} code because the last one was an \emph{absolute fucking mess}
-    \item Understand \emph{why the hell} the compiler is complaining
+    \item Organize your \textrm{\LaTeXe} code because your last document was an \emph{absolute fucking mess}
+    % \item Understand \emph{why the hell} the compiler is complaining
     \item Consume your precariously short existence trying to learn to draw pictures with a terrible programming language called \emph{TikZ}
   \end{itemize}
 \end{frame}
 
-\begin{frame}{About this presentation}
-\begin{block}{Content}
-\begin{itemize}
-  \item \textrm{\LaTeX} is \emph{learn by doing} \\
-  \item Will be mostly examples
-  \item Sorry for the crowded slides
-\end{itemize}
-\end{block}
-
-\begin{exampleblock}{Example}
-Things in green boxes are examples
-\end{exampleblock}
-
-\begin{alertblock}{Tip}
-Things in red boxes are tips or extras
-\end{alertblock}
-\end{frame}
+% \begin{frame}{About this presentation}
+%   \begin{block}{Content}
+%     \begin{itemize}
+%       \item \textrm{\LaTeX} is \emph{learn by doing} \\
+%       \item Will be mostly examples
+%       \item Sorry for the crowded slides
+%     \end{itemize}
+%   \end{block}
+% 
+%   \begin{exampleblock}{Example}
+%     Things in green boxes are examples
+%   \end{exampleblock}
+% 
+%   \begin{alertblock}{Tip}
+%     Things in red boxes are tips or extras
+%   \end{alertblock}
+% \end{frame}
 
 \begin{frame}{Do yourself a favor}
   \begin{alertblock}{Use the International US Keyboard Layout}
@@ -235,7 +247,115 @@ Things in red boxes are tips or extras
   \end{columns}
 \end{frame}
 
-\begin{frame}[fragile]{Typesetting (aka ``compilation'')}
+\begin{frame}[fragile]{Line breaks}
+
+  {\LARGE \bfseries Stop putting line breaks everywhere.}
+
+  \begin{alertblock}{Don't}
+    \begin{lstlisting}
+%% wrong
+This is a sentence in the first paragraph. \\
+This is another paragraph.
+    \end{lstlisting}
+  \end{alertblock}
+
+  \begin{block}{Do}
+    \begin{lstlisting}
+This is a sentence in the first paragraph.
+
+This is another paragraph.
+    \end{lstlisting}
+  \end{block}
+
+  Use \lstinline!\\! only in \lstinline!tabular!
+
+\end{frame}
+
+\begin{frame}[fragile]{Don't do manual styling}
+
+  \begin{alertblock}{Don't}
+    \begin{lstlisting}
+I want that \textbf{this part} stands out.
+    \end{lstlisting}
+  \end{alertblock}
+
+  There is an \emph{emphasis} macro
+
+  \begin{block}{Do}
+    \begin{lstlisting}
+I want that \emph{this part} stands out.
+    \end{lstlisting}
+  \end{block}
+
+  \href{https://github.com/HSR-Stud/Willkommen/blob/master/Guidelines.md#text-and-structure}{Click here} if you want to change how \lstinline!\emph! looks like.
+
+\end{frame}
+
+\begin{frame}[fragile]{Don't do manual styling, again!}
+
+  {\LARGE \bfseries Never manually create headings}
+  
+  Yes, I've seen it done.
+
+  \begin{alertblock}{Don't}
+    \begin{lstlisting}
+% NEVER do this
+\textit{\textsf{My custom heading}} \\[1em]
+    \end{lstlisting}
+  \end{alertblock}
+
+\end{frame}
+
+\begin{frame}[fragile]{Customize headings}
+
+  \begin{exampleblock}{With the \texttt{titlesec} package}
+    \begin{lstlisting}
+% in the preamble
+\usepackage{titlesec}
+
+\titleformat{\paragraph}[hang]
+  {\normalfont\itshape\sffamily}
+  {\theparagraph}{1em}{}
+
+% later in the document
+\paragraph{My custom heading}
+    \end{lstlisting}
+  \end{exampleblock}
+
+  \begin{block}{}
+    KOMA classes have their own customization commands
+  \end{block}
+\end{frame}
+
+\begin{frame}[fragile]{Stop making ugly tables}
+
+%   \begin{table}
+%     \centering
+%     \begin{tabular}{l >{\(}l<{\)} >{\(}l<{\)}}
+%       \toprule
+%       \bfseries Coordinates & \textbf{Volume } dv & \textbf{Surface } d\vec{s}\\
+%       \midrule
+%       Cartesian & - & dx\,dy     \\
+%       Polar     & - & rd\,rd\phi \\
+%       Curvilinear & - & |\mathbf{J}_f|\,du\,dv \\
+%       \midrule
+%       Cartesian   & dx\,dy\,dz                         & \uvec{z}\,dx\,dy     \\
+%       Cylindrical & r\,dr\,d\phi\,dz                   & \uvec{z}r\,dr\,d\phi \\
+%                   &                                    & \uvec{\phi}\,dr\,dz  \\
+%                   &                                    & \uvec{r}r\,d\phi\,dz \\
+%       Spherical   & r^2\sin\theta\, dr\,d\theta\,d\phi & 
+%         \uvec{r}r^2\sin\theta\,d\theta\,d\phi \\
+%       Curvilinear & |\mx{J}_f|\,du\,dv\,dw & - \\
+%       \bottomrule
+%     \end{tabular}
+%     \caption{Differential elements for integration.}
+%   \end{table}
+
+\end{frame}
+
+\section{Packages and classes}
+
+\begin{frame}[fragile]{What is a package?}
   \begin{figure}[H]
     \begin{tikzpicture}[
         node distance = 1cm,
@@ -287,7 +407,7 @@ Things in red boxes are tips or extras
               anchor = south east,
               text width = 2.5cm,
               blue!80!black,
-            ] {``\texttt{usepackage}''};
+            ] {``Package''};
       \draw pic{file = {TEX .tex {above = 1.2cm of STY}}}
             node[
               left = 3mm of TEX,
@@ -299,7 +419,14 @@ Things in red boxes are tips or extras
               left = 3mm of CLS,
               align = right,
               text width = 2.5cm
-            ] {Document class};
+            ] {Document class}
+            node[
+              above = 0mm of CLS,
+              anchor = south east,
+              text width = 2cm,
+              blue!80!black,
+            ] {``Class''};
+
 
       \draw[thick, ->] (TEX.east) to [out = 0, in = 160] (C);
       \draw[thick, ->] (STY.east) to [out = 0, in = 180] (C);
@@ -324,9 +451,6 @@ Things in red boxes are tips or extras
     \end{tikzpicture}
   \end{figure}
 \end{frame}
-
-
-\section{Packages and classes}
 
 
 \section{TikZ ist kein Zeichenprogramm}
