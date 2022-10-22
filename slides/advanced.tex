@@ -152,7 +152,7 @@
   \Large
   \begin{itemize}
     \item Organize your \textrm{\LaTeXe} code because your last document was an \emph{absolute fucking mess}
-    % \item Understand \emph{why the hell} the compiler is complaining
+    \item Understand \emph{why the hell} the compiler is complaining
     \item Consume your precariously short existence trying to learn to draw pictures with a terrible programming language called \emph{TikZ}
   \end{itemize}
 \end{frame}
@@ -291,7 +291,7 @@ I want that \emph{this part} stands out.
 
 \end{frame}
 
-\begin{frame}[fragile]{Don't do manual styling, again!}
+\begin{frame}[fragile]{Don't do manual styling (bis)}
 
   {\LARGE \bfseries Never manually create headings}
   
@@ -452,6 +452,136 @@ I want that \emph{this part} stands out.
   \end{figure}
 \end{frame}
 
+\section{Why the \TeX{} compiler sucks}
+
+\begin{frame}{The root of the problem}
+  
+  {\Large 
+    Essentially, because D. Knuth is too clever.
+  }
+  
+  \begin{block}{DemocracyFTW on HN under 29672872}
+    \itshape
+    TeX uses recursive rewrites of the code that is the document to achieve
+    what it does, without properly keeping track of where it is and what it
+    does. There is no technical necessity for doing so, but the technique
+    introduces huge complexity costs. On a somewhat related note, TeX's syntax
+    at its very heart is also not trivial to parse short of executing
+    (compiling) a given document (i.e. TeX's syntax itself is Turing-complete).
+  \end{block}
+\end{frame}
+
+\makeatletter
+\def\tower{\@ifnextchar[%
+  {\def\endtower{}\towerstep}%
+  {}%
+}%
+\def\towerstep[#1]{#1%
+  \@ifnextchar[%
+    {\edef\endtower{\endtower\egroup}%
+    ^\bgroup\towerstep}{\endtower}%
+}
+\makeatother
+
+\begin{frame}[fragile]{Let me give you an example}
+  \begin{columns}
+    \begin{column}{.6\linewidth}
+      \begin{block}{Power tower function}
+        \begin{lstlisting}
+\tower[a] % {a}
+\tower[a][b] % {a^{b}}
+\tower[a][b][c] % {a^{b^{c}}}
+        \end{lstlisting}
+      \end{block}
+    \end{column}
+    \begin{column}{.4\linewidth}
+      \begin{exampleblock}{Output}
+        \Large
+        \[
+          \tower[a] \quad
+          \tower[a][b] \quad
+          \tower[a][b][c]
+        \]
+      \end{exampleblock}
+    \end{column}
+  \end{columns}
+  \begin{block}{How you think it's done}
+    \begin{lstlisting}[language=python]
+def tower(args):
+  for a in args:
+    write("%s^{" % a)
+  write("}" * (len(args) -1))
+    \end{lstlisting}
+  \end{block}
+\end{frame}
+
+\begin{frame}[fragile]{Let me give you an example}
+  \begin{block}{How it's actually done}
+    \begin{lstlisting}[language=python]
+# txt is like a pointer or iterator
+def tower(txt):
+  endtower = ""
+
+  def step(t):
+    if nextchr(t) == "[":
+      endtower += "}"
+      write("%s^{" % t + step(nextchr(t)))
+    else:
+      write(endtower)
+
+  step(txt)
+    \end{lstlisting}
+  \end{block}
+\end{frame}
+
+\begin{frame}[fragile]{Let me give you an example}
+  \begin{block}{Easy!}
+    \begin{lstlisting}
+\makeatletter
+\def\tower{\@ifnextchar[%
+  {\def\endtower{}\towerstep}%
+  {}%
+}%
+\def\towerstep[#1]{#1%
+  \@ifnextchar[%
+    {\edef\endtower{\endtower\egroup}%
+    ^\bgroup\towerstep}{\endtower}%
+}
+\makeatother
+    \end{lstlisting}
+  \end{block}
+\end{frame}
+
+\begin{frame}{What execution (compiling) looks like}
+  \begin{block}{Execution flow}
+    \begin{enumerate}
+      \item Load file
+      \item Recursively expand macros (in the aux file)
+      \item Something goes wrong
+      \item You're probably deep in a recursion but you don't know because you don't keep a stack
+      \item Print an incomprehensible message about a missing variable or something
+      \item Wait for user input or die
+    \end{enumerate}
+  \end{block}
+\end{frame}
+
+\begin{frame}[fragile]{Amazing error messages}
+  \begin{block}{Almost as good as C++ template errors}
+    \footnotesize
+    \begin{verbatim}
+) [13] (/var/folders/w1/cmd2jfv1229gcxvtdyfg1vjc0000gn/T/latex-build-1457ae9381593aa61ed49d5df3bb1135/advanced.toc) [14] [15] (/var/folders/w1/cmd2jfv1229gcxvtdyfg1vjc0000gn/T/latex-build-1457ae9381593aa61ed49d5df3bb1135/advanced.vrb (/Users/npross/Library/TinyTeX/texmf-dist/tex/latex/listings/lstlang1.sty)) [16] (/var/folders/w1/cmd2jfv1229gcxvtdyfg1vjc0000gn/T/latex-build-1457ae9381593aa61ed49d5df3bb1135/advanced.vrb) [17]
+Runaway argument?
+{{Let me give you an example} \begin {block}{Easy!} \begin {lstlistin\ETC.
+./advanced.tex:555: Paragraph ended before \beamer@@@checkoldframe was complete.
+<to be read again> 
+                   \par 
+l.555 
+      
+Output written on /var/folders/w1/cmd2jfv1229gcxvtdyfg1vjc0000gn/T/latex-build-1457ae9381593aa61ed49d5df3bb1135/advanced.pdf (17 pages).
+Transcript written on /var/folders/w1/cmd2jfv1229gcxvtdyfg1vjc0000gn/T/latex-build-1457ae9381593aa61ed49d5df3bb1135/advanced.log.
+    \end{verbatim}
+  \end{block}
+\end{frame}
 
 \section{TikZ ist kein Zeichenprogramm}
 
