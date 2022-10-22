@@ -508,9 +508,10 @@ I want that \emph{this part} stands out.
   \begin{block}{How you think it's done}
     \begin{lstlisting}[language=python]
 def tower(args):
+  write("{")
   for a in args:
     write("%s^{" % a)
-  write("}" * (len(args) -1))
+  write("}" * len(args))
     \end{lstlisting}
   \end{block}
 \end{frame}
