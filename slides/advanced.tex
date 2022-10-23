@@ -539,14 +539,15 @@ def tower(txt):
   \begin{block}{Easy!}
     \begin{lstlisting}
 \makeatletter
-\def\tower{\@ifnextchar[%
-  {\def\endtower{}\towerstep}%
-  {}%
-}%
+\def\tower{\@ifnextchar[
+  {\def\endtower{}\towerstep}
+  {}
+}
 \def\towerstep[#1]{#1%
-  \@ifnextchar[%
-    {\edef\endtower{\endtower\egroup}%
-    ^\bgroup\towerstep}{\endtower}%
+  \@ifnextchar[
+    {\edef\endtower{\endtower\egroup}
+      ^\bgroup\towerstep}
+    {\endtower}
 }
 \makeatother
     \end{lstlisting}
