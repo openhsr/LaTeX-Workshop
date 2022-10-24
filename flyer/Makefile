@@ -1,20 +1,14 @@
 TEX := xelatex
 TEXARGS := -halt-on-error -interaction=nonstopmode --output-directory=build
 
-SOURCES := flyer.tex
+SOURCES := flyer.tex flyer-advanced.tex
 
 # Get the main file from the file
-MAIN := $(shell sed -ne 's/^.*\!TeX root =\(.*\)$$/\1/ p' $(SOURCES))
-PDF  := $(patsubst %.tex, build/%.pdf, $(MAIN))
-SVG  := $(patsubst %.tex, build/%.svg, $(MAIN))
-
-ifeq ($(strip $(MAIN)),)
-MAIN := $(error Failed to identify TeX root, try adding \
-	`% !TeX root = <filename>` to your main tex file)
-endif
+PDFS  := $(patsubst %.tex, build/%.pdf, $(SOURCES))
+SVGS  := $(patsubst %.tex, build/%.svg, $(SOURCES))
 
 .PHONY: all
-all: $(PDF) $(SVG)
+all: $(PDFS) $(SVGS)
 
 build/%.pdf: %.tex $(SOURCES)
 	mkdir -p build
@@ -22,7 +16,8 @@ build/%.pdf: %.tex $(SOURCES)
 	$(TEX) $(TEXARGS) $<
 
 build/%.svg: build/%.pdf
-	dvisvgm --precision=5 --no-fonts --linkmark=none --pdf $< --output=$@
+	dvisvgm --precision=5 --no-fonts --linkmark=none --pdf $< --output=$@ \
+		--libgs=/opt/homebrew/Cellar/ghostscript/10.0.0/lib/libgs.dylib
 
 .PHONY: clean
 clean:
