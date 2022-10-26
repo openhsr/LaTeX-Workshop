@@ -57,12 +57,12 @@ If you don't know which one to pick, TeXWorks is probably the simplest.
 
 | Name                               | Supported OSs               | Homepage                                | Free?       |
 |------------------------------------|-----------------------------|-----------------------------------------|-------------|
-| VS Code + LaTeX-Workshop Extension | Linux, MacOS, Windows       | https://code.visualstudio.com/          | Yes         |
 | TeXWorks                           | Linux, MacOS, Windows       | https://www.tug.org/texworks/           | Yes         |
 | TexMaker                           | Linux, MacOS, Windows       | https://www.xm1math.net/texmaker/       | Yes         |
 | TeXStudio                          | Linux, MacOS, Windows       | https://www.texstudio.org/              | Yes         |
+| VS Code + LaTeX-Workshop Extension | Linux, MacOS, Windows       | https://code.visualstudio.com/          | Yes         |
 | Overleaf                           | Firefox, Chrome (online!)   | https://www.overleaf.com/               | Yes         |
-| Texpad                             | MacOS                       | https://www.texpad.com/                 | No, ~30 CHF |
+| Texifier                           | MacOS                       | https://www.texifier.com/               | No, ~30 CHF |
 | TeXnicCenter                       | Windows                     | https://www.texniccenter.org/           | Yes         |
 | GNOME LaTeX                        | Linux, MacOS                | https://wiki.gnome.org/Apps/GNOME-LaTeX | Yes         |
 | Compositor                         | MacOS                       | https://compositorapp.com/              | No, ~30 CHF |
