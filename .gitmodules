@@ -4,3 +4,6 @@
 [submodule "templates/TexTemplates"]
 	path = templates/TexTemplates
 	url = https://github.com/NaoPross/TexTemplates.git
+[submodule "templates/Thesis"]
+	path = templates/Thesis
+	url = https://github.com/NaoPross/Thesis.git
