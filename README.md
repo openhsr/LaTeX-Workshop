@@ -1,5 +1,5 @@
-# `Open\HSR` LaTeX Workshop
-This repository contains the documentation for the OpenHSR introductory LaTeX workshop.
+# `Open\OST` LaTeX Workshop
+This repository contains the documentation for the OpenOST introductory LaTeX workshop.
 
 ![TeXWorks Editor](pics/texworks.png)
 
@@ -70,7 +70,22 @@ If you don't know which one to pick, TeXWorks is probably the simplest.
 Here is a (pretty old, but still relevant) comparison of various editors:
 https://tex.stackexchange.com/questions/339/latex-editors-ides
 
+## Looking for templates?
+
+There are a lot of templates online, here's a few:
+
+ - [Mine (Naoki's)](https://github.com/NaoPross/Thesis)
+ - [OST Beamer template](https://github.com/ost-fh/Latex-Beamer-Theme) from someone from the informatik dep
+ - [Badertscher's OST beamer template](https://github.com/ost-fh/Latex-Beamer-Theme)
+ - [Mimosis Thesis](https://github.com/Pseudomanifold/latex-mimosis)
+ - [Clean Thesis](http://cleanthesis.der-ric.de/)
+
+Of course on the internet there are a million other templates, however beware most although good looking may be messy to work with. Check that the source code is not spaghetti before using for the most important work you write at University!
+
+ - [Overleaf's LaTeX templates for theses](https://www.overleaf.com/latex/templates/tagged/thesis)
+
 ## Further readings and useful links
+
 - [Wikibooks LaTeX (online)](https://en.wikibooks.org/wiki/LaTeX#Contents)
 - [Introduction to LaTeX (online)](https://web.mit.edu/rsi/www/pdfs/new-latex.pdf)
 - [A not so short introduction to LaTeXe](references/lshort.pdf) ([online](https://tobi.oetiker.ch/lshort/lshort.pdf))
@@ -88,9 +103,9 @@ https://tex.stackexchange.com/questions/339/latex-editors-ides
 
 ## License
 ```
-Open\HSR-LaTeX-Workshop (c) by Naoki Pross
+Open\OST-LaTeX-Workshop (c) by Naoki Pross
 
-Open\HSR-LaTeX-Workshop is licensed under a
+Open\OST-LaTeX-Workshop is licensed under a
 Creative Commons Attribution-ShareAlike 4.0 Unported License.
 
 You should have received a copy of the license along with this
