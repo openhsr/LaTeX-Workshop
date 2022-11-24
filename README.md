@@ -75,10 +75,10 @@ https://tex.stackexchange.com/questions/339/latex-editors-ides
 There are a lot of templates online, here's a few:
 
  - [Mine (Naoki's)](https://github.com/NaoPross/Thesis)
- - [OST Beamer template](https://github.com/ost-fh/Latex-Beamer-Theme) from someone from the informatik dep
- - [Badertscher's OST beamer template](https://github.com/ost-fh/Latex-Beamer-Theme)
  - [Mimosis Thesis](https://github.com/Pseudomanifold/latex-mimosis)
  - [Clean Thesis](http://cleanthesis.der-ric.de/)
+ - [Informatik OST Beamer template](https://github.com/ost-fh/Latex-Beamer-Theme)
+ - [Badertscher's OST beamer template](https://github.com/HBadertscher/OSTPresentation)
 
 Of course on the internet there are a million other templates, however beware most although good looking may be messy to work with. Check that the source code is not spaghetti before using for the most important work you write at University!
 
@@ -86,6 +86,7 @@ Of course on the internet there are a million other templates, however beware mo
 
 ## Further readings and useful links
 
+- [LaTeX tips and guidelines to avoid terrible typesetting (online)](https://github.com/HSR-Stud/Willkommen/blob/master/Guidelines.md)
 - [Wikibooks LaTeX (online)](https://en.wikibooks.org/wiki/LaTeX#Contents)
 - [Introduction to LaTeX (online)](https://web.mit.edu/rsi/www/pdfs/new-latex.pdf)
 - [A not so short introduction to LaTeXe](references/lshort.pdf) ([online](https://tobi.oetiker.ch/lshort/lshort.pdf))
