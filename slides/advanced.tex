@@ -471,6 +471,27 @@ I want that \emph{this part} stands out.
   \end{block}
 \end{frame}
 
+\begin{frame}{Turing completeness of \TeX}
+  \begin{block}{Sanity check}
+    Wait, so you're saying that in theory \TeX{} could compute \emph{anything}?
+    \textbf{YES}.
+  \end{block}
+  \begin{exampleblock}{Insane projects}
+    \begin{itemize}
+      \item AVR CPU emulator in \TeX{}: 
+        \href{https://www.ctan.org/pkg/avremu}{\texttt{avremu}} package
+      \item BASIC interpreter in \TeX{}:
+        \href{https://www.ctan.org/pkg/basix}{\texttt{BASIX}} package
+      \item ``Mars rover problem'' solution in \TeX{}:
+        \href{https://wiki.haskell.org/wikiupload/8/85/TMR-Issue13.pdf}{\texttt{link}}
+      \item Play reversi against an AI written in \TeX{} with
+        \href{https://mirror.foobar.to/CTAN/macros/generic/reverxii/reverxii.pdf}{\texttt{reverxii}}
+      \item Tower of Hanoi problem solution in \TeX{}:
+        \href{https://www.ctan.org/pkg/hanoi}{\texttt{hanoi}} package
+    \end{itemize}
+  \end{exampleblock}
+\end{frame}
+
 \makeatletter
 \def\tower{\@ifnextchar[%
   {\def\endtower{}\towerstep}%
