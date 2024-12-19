@@ -1,3 +1,5 @@
+**Update:** For the updated version of this workshop see https://github.com/HSR-Stud/LaTeX-Workshop
+
 # `Open\OST` LaTeX Workshop
 This repository contains the documentation for the OpenOST introductory LaTeX workshop.
 
